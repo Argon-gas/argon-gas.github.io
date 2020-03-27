@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    Hello World Again |  Argon_gas&#39; Minecraft Site
+    [1.15.2]Minecraft原版数据包---玩家头颅ID显示 |  Argon_gas&#39; Minecraft Site
   </title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   
@@ -35,7 +35,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-Hello-World-Again" class="article article-type-post" itemscope
+  <article id="post-1-15-2-Minecraft原版数据包-玩家头颅ID显示" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -43,7 +43,7 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  Hello World Again
+  [1.15.2]Minecraft原版数据包---玩家头颅ID显示
 </h1>
  
 
@@ -52,8 +52,8 @@
 
     
     <div class="article-meta">
-      <a href="/2020/03/27/Hello-World-Again/" class="article-date">
-  <time datetime="2020-03-27T10:46:20.000Z" itemprop="datePublished">2020-03-27</time>
+      <a href="/2020/03/27/1-15-2-Minecraft%E5%8E%9F%E7%89%88%E6%95%B0%E6%8D%AE%E5%8C%85-%E7%8E%A9%E5%AE%B6%E5%A4%B4%E9%A2%85ID%E6%98%BE%E7%A4%BA/" class="article-date">
+  <time datetime="2020-03-27T13:53:10.000Z" itemprop="datePublished">2020-03-27</time>
 </a>
       
       
@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">118字</span>
+            <span class="post-count">389字</span>
         </span>
     </span>
 
@@ -83,6 +83,8 @@
 
     
     
+    <div class="tocbot"></div>
+
 
 
 
@@ -95,7 +97,24 @@
       
 
       
-      <p>探索好久，终于是有了些眉目，用hexo生成静态页面之后速度果然快了很多。<br>虽然有比较完整的教程吧，但是自己实践的时候还是遇到各种奇怪的问题，不断尝试最终也还是成功了啊XD<br>那么这个网站就是Ar的Minecraft<del>水贴</del>站了，平时水点原版模组就扔上来好了。<br>再一次，你好，世界。<br><del>另外得去学学markdown语法</del></p>
+      <p>该数据包使得玩家放置的玩家头颅能够以悬浮字形式在上方显示其用户ID，并支持使用彩色羊毛对其染色。<br>该数据包隶属于<em>cAsual woRk</em>。(1/99)</p>
+<a id="more"></a>
+
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：<br><a href="https://www.bilibili.com/video/BV1xE411p7FW" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411p7FW</a></p>
+<h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>首先是通过进度判断玩家放下头颅，要注意的是头颅放在地上和墙上的id不同，当时我就被这个坑了好久（</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"criteria"</span>: &#123;</span><br><span class="line">        <span class="attr">"put_head"</span>: &#123;</span><br><span class="line">            <span class="attr">"trigger"</span>: <span class="string">"minecraft:placed_block"</span>,</span><br><span class="line">            <span class="attr">"conditions"</span>: &#123;</span><br><span class="line">                <span class="attr">"block"</span>: <span class="string">"minecraft:player_head"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"rewards"</span>: &#123;</span><br><span class="line">        <span class="attr">"function"</span>: <span class="string">"skull:reset"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"criteria"</span>: &#123;</span><br><span class="line">        <span class="attr">"put_head"</span>: &#123;</span><br><span class="line">            <span class="attr">"trigger"</span>: <span class="string">"minecraft:placed_block"</span>,</span><br><span class="line">            <span class="attr">"conditions"</span>: &#123;</span><br><span class="line">                <span class="attr">"block"</span>: <span class="string">"minecraft:player_wall_head"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"rewards"</span>: &#123;</span><br><span class="line">        <span class="attr">"function"</span>: <span class="string">"skull:reset"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后通过视线追踪在头颅位置生成maker，并对齐方块中央。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">execute if entity @s[distance=..6] if block ~ ~ ~ #player_head positioned ^ ^ ^ run summon armor_stand ~ ~ ~ &#123;Invisible:1b,Invulnerable:1b,Marker:1b,Tags:["skull-name"],Small:1b&#125;</span><br><span class="line">execute if entity @s[distance=..6] unless block ~ ~ ~ #player_head positioned ^ ^ ^0.005 run function skull:ray</span><br></pre></td></tr></table></figure>
+
+<p>然后通过牌子获取到头颅的用户ID，使用<em>interpret</em>拍扁</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run setblock ~ ~2 ~ minecraft:oak_sign&#123;Text1:"&#123;\"block\":\"~ ~-2 ~\",\"nbt\":\"Owner.Name\",\"interpret\":false&#125;",Text2:"&#123;\"text\":\"\"&#125;",Text3:"&#123;\"text\":\"\"&#125;",Text4:"&#123;\"text\":\"\"&#125;"&#125;</span><br><span class="line">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run data modify entity @s CustomName set from block ~ ~2 ~ Text1</span><br></pre></td></tr></table></figure>
+
+<p>最后是羊毛染色的相关处理，偷懒直接改了队伍color。</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p>*黑洞群的bcb大佬和黑猫大佬提供技术支持<br>*kc提供了他的头（？）<br>*dhp真好用</p>
+<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接：<a href="https://pan.baidu.com/s/1EvwPPwuBLD-FEjmrnktelA" target="_blank" rel="noopener">https://pan.baidu.com/s/1EvwPPwuBLD-FEjmrnktelA</a><br>提取码：t9qq</p>
 
       
       <!-- reward -->
@@ -161,14 +180,14 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/27/Hello-World-Again/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/27/1-15-2-Minecraft%E5%8E%9F%E7%89%88%E6%95%B0%E6%8D%AE%E5%8C%85-%E7%8E%A9%E5%AE%B6%E5%A4%B4%E9%A2%85ID%E6%98%BE%E7%A4%BA/" alt="微信分享二维码">
     </div>
 </div>
 
 <div id="share-mask"></div>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/strange/" rel="tag">strange</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/commands/" rel="tag">commands</a></li></ul>
 
 
     </footer>
@@ -179,19 +198,10 @@
   
   <nav class="article-nav">
     
-      <a href="/2020/03/27/1-15-2-Minecraft%E5%8E%9F%E7%89%88%E6%95%B0%E6%8D%AE%E5%8C%85-%E7%8E%A9%E5%AE%B6%E5%A4%B4%E9%A2%85ID%E6%98%BE%E7%A4%BA/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            [1.15.2]Minecraft原版数据包---玩家头颅ID显示
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/03/27/hello-world/" class="article-nav-link">
+      <a href="/2020/03/27/Hello-World-Again/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Hello World</div>
+        <div class="article-nav-title">Hello World Again</div>
       </a>
     
   </nav>

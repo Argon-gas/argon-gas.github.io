@@ -1,6 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>[1.15.2]Minecraft原版数据包---玩家头颅ID显示</title>
+    <url>/2020/03/27/1-15-2-Minecraft%E5%8E%9F%E7%89%88%E6%95%B0%E6%8D%AE%E5%8C%85-%E7%8E%A9%E5%AE%B6%E5%A4%B4%E9%A2%85ID%E6%98%BE%E7%A4%BA/</url>
+    <content><![CDATA[<p>该数据包使得玩家放置的玩家头颅能够以悬浮字形式在上方显示其用户ID，并支持使用彩色羊毛对其染色。<br>该数据包隶属于<em>cAsual woRk</em>。(1/99)</p>
+<a id="more"></a>
+
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：<br><a href="https://www.bilibili.com/video/BV1xE411p7FW" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411p7FW</a></p>
+<h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>首先是通过进度判断玩家放下头颅，要注意的是头颅放在地上和墙上的id不同，当时我就被这个坑了好久（</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"criteria"</span>: &#123;</span><br><span class="line">        <span class="attr">"put_head"</span>: &#123;</span><br><span class="line">            <span class="attr">"trigger"</span>: <span class="string">"minecraft:placed_block"</span>,</span><br><span class="line">            <span class="attr">"conditions"</span>: &#123;</span><br><span class="line">                <span class="attr">"block"</span>: <span class="string">"minecraft:player_head"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"rewards"</span>: &#123;</span><br><span class="line">        <span class="attr">"function"</span>: <span class="string">"skull:reset"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"criteria"</span>: &#123;</span><br><span class="line">        <span class="attr">"put_head"</span>: &#123;</span><br><span class="line">            <span class="attr">"trigger"</span>: <span class="string">"minecraft:placed_block"</span>,</span><br><span class="line">            <span class="attr">"conditions"</span>: &#123;</span><br><span class="line">                <span class="attr">"block"</span>: <span class="string">"minecraft:player_wall_head"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"rewards"</span>: &#123;</span><br><span class="line">        <span class="attr">"function"</span>: <span class="string">"skull:reset"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后通过视线追踪在头颅位置生成maker，并对齐方块中央。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">execute if entity @s[distance=..6] if block ~ ~ ~ #player_head positioned ^ ^ ^ run summon armor_stand ~ ~ ~ &#123;Invisible:1b,Invulnerable:1b,Marker:1b,Tags:["skull-name"],Small:1b&#125;</span><br><span class="line">execute if entity @s[distance=..6] unless block ~ ~ ~ #player_head positioned ^ ^ ^0.005 run function skull:ray</span><br></pre></td></tr></table></figure>
+
+<p>然后通过牌子获取到头颅的用户ID，使用<em>interpret</em>拍扁</p>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run setblock ~ ~2 ~ minecraft:oak_sign&#123;Text1:"&#123;\"block\":\"~ ~-2 ~\",\"nbt\":\"Owner.Name\",\"interpret\":false&#125;",Text2:"&#123;\"text\":\"\"&#125;",Text3:"&#123;\"text\":\"\"&#125;",Text4:"&#123;\"text\":\"\"&#125;"&#125;</span><br><span class="line">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run data modify entity @s CustomName set from block ~ ~2 ~ Text1</span><br></pre></td></tr></table></figure>
+
+<p>最后是羊毛染色的相关处理，偷懒直接改了队伍color。</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p>*黑洞群的bcb大佬和黑猫大佬提供技术支持<br>*kc提供了他的头（？）<br>*dhp真好用</p>
+<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接：<a href="https://pan.baidu.com/s/1EvwPPwuBLD-FEjmrnktelA" target="_blank" rel="noopener">https://pan.baidu.com/s/1EvwPPwuBLD-FEjmrnktelA</a><br>提取码：t9qq</p>
+]]></content>
+      <tags>
+        <tag>commands</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World Again</title>
     <url>/2020/03/27/Hello-World-Again/</url>
     <content><![CDATA[<p>探索好久，终于是有了些眉目，用hexo生成静态页面之后速度果然快了很多。<br>虽然有比较完整的教程吧，但是自己实践的时候还是遇到各种奇怪的问题，不断尝试最终也还是成功了啊XD<br>那么这个网站就是Ar的Minecraft<del>水贴</del>站了，平时水点原版模组就扔上来好了。<br>再一次，你好，世界。<br><del>另外得去学学markdown语法</del></p>
@@ -13,6 +39,7 @@
     <title>Hello World</title>
     <url>/2020/03/27/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<a id="more"></a>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
@@ -26,5 +53,8 @@
 
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
+      <tags>
+        <tag>strange</tag>
+      </tags>
   </entry>
 </search>
