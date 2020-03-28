@@ -35,7 +35,7 @@
   <div id="app">
     <main class="content on">
       <section class="outer">
-  <article id="post-1-15-2-Minecraft原版数据包-玩家头颅ID显示" class="article article-type-post" itemscope
+  <article id="post-1-15-2-Minecraft数据包-玩家头颅ID显示" class="article article-type-post" itemscope
   itemprop="blogPost" data-scroll-reveal>
 
   <div class="article-inner">
@@ -52,7 +52,7 @@
 
     
     <div class="article-meta">
-      <a href="/2020/03/27/1-15-2-Minecraft%E5%8E%9F%E7%89%88%E6%95%B0%E6%8D%AE%E5%8C%85-%E7%8E%A9%E5%AE%B6%E5%A4%B4%E9%A2%85ID%E6%98%BE%E7%A4%BA/" class="article-date">
+      <a href="/2020/03/27/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E7%8E%A9%E5%AE%B6%E5%A4%B4%E9%A2%85ID%E6%98%BE%E7%A4%BA/" class="article-date">
   <time datetime="2020-03-27T13:53:10.000Z" itemprop="datePublished">2020-03-27</time>
 </a>
       
@@ -97,7 +97,7 @@
       
 
       
-      <p>该数据包使得玩家放置的玩家头颅能够以悬浮字形式在上方显示其用户ID，并支持使用彩色羊毛对其染色。<br>该数据包隶属于<em>cAsual woRk</em>。(1/99)</p>
+      <p>该数据包使得玩家放置的玩家头颅能够以悬浮字形式在上方显示其用户ID，并支持使用彩色羊毛对其染色。<br>该数据包隶属于 <em>cAsual woRk</em> (1/99)</p>
 <a id="more"></a>
 
 <h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：<br><a href="https://www.bilibili.com/video/BV1xE411p7FW" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411p7FW</a></p>
@@ -116,7 +116,11 @@
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run setblock ~ ~2 ~ minecraft:oak_sign&#123;Text1:"&#123;\"block\":\"~ ~-2 ~\",\"nbt\":\"Owner.Name\",\"interpret\":false&#125;",Text2:"&#123;\"text\":\"\"&#125;",Text3:"&#123;\"text\":\"\"&#125;",Text4:"&#123;\"text\":\"\"&#125;"&#125;</span><br><span class="line">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run data modify entity @s CustomName set from block ~ ~2 ~ Text1</span><br></pre></td></tr></table></figure>
 
 <p>最后是羊毛染色的相关处理，偷懒直接改了队伍color。</p>
-<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><p>*黑洞群的bcb大佬和黑猫大佬提供技术支持<br>*kc提供了他的头（？）<br>*dhp真好用</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
+<li>黑洞群的bcb大佬和黑猫大佬提供技术支持</li>
+<li>kc提供了他的头（？）</li>
+<li>dhp真好用</li>
+</ul>
 <h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接：<a href="https://pan.baidu.com/s/1EvwPPwuBLD-FEjmrnktelA" target="_blank" rel="noopener">https://pan.baidu.com/s/1EvwPPwuBLD-FEjmrnktelA</a><br>提取码：t9qq</p>
 
       
@@ -183,7 +187,7 @@
     <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/27/1-15-2-Minecraft%E5%8E%9F%E7%89%88%E6%95%B0%E6%8D%AE%E5%8C%85-%E7%8E%A9%E5%AE%B6%E5%A4%B4%E9%A2%85ID%E6%98%BE%E7%A4%BA/" alt="微信分享二维码">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/27/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E7%8E%A9%E5%AE%B6%E5%A4%B4%E9%A2%85ID%E6%98%BE%E7%A4%BA/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -200,6 +204,15 @@
   
   
   <nav class="article-nav">
+    
+      <a href="/2020/03/28/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E6%90%AC%E7%AE%B1%E5%99%A8/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            [1.15.2]Minecraft数据包---搬箱器]
+          
+        </div>
+      </a>
     
     
       <a href="/2020/03/27/Hello-World-Again/" class="article-nav-link">
