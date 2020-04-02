@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>尝试做一张cover</title>
+    <url>/2020/04/02/%E5%B0%9D%E8%AF%95%E5%81%9A%E4%B8%80%E5%BC%A0cover/</url>
+    <content><![CDATA[<p>最近呢，想要自定义一下首页的cover。毕竟这是个Minecraft的站点，所以想要以Minecraft为题材做这么一张图片。<br>原图其实还蛮好看的，不过对比度似乎高了点，不太符合整体风格。所以我想用双色调风格，颜色也要偏向白/灰/黑之类的。<br>再加上我是个CBer（？），所以要和命令元素相关，画面中最好有一些技术性内容。<br>那么一番构（luan）思（xiang）之后，有了以下方案：</p>
+<a id="more"></a>
+
+<p>最初想放个命令方块在中间，周围放上各种奇怪的生物/物品，但是考虑到最后要做双色调，颜色可能会失去不少。而且我不太会布局，所以作罢。</p>
+<p>后来又想搭个小场景，画了十分钟建了一个，怎么看怎么丑，作罢。</p>
+<p>又想用c4d，mi之类的渲染一张，但是水平有限，作罢。</p>
+<p>所以最后还是选了第一种方案，只不过把各种奇怪生物全删掉了，留了一只creeper，最后出来的效果其实还不错，调色感觉也比较符合整体效果。</p>
+<p><img src="http://q7vmrdbrg.bkt.clouddn.com/cover10" alt="cover"></p>
+<p>以后会多做几张类似风格的，再做个自动轮换岂不美哉。</p>
+]]></content>
+      <tags>
+        <tag>strange</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[1.15.2]Minecraft数据包---搬箱器</title>
     <url>/2020/03/28/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E6%90%AC%E7%AE%B1%E5%99%A8/</url>
     <content><![CDATA[<p>该数据包允许玩家使用新增物品：搬箱器，来较为容易的搬运箱子。<br>该数据包隶属于 <em>cAsual woRk</em> (2/99)</p>
@@ -63,7 +80,8 @@
   <entry>
     <title>Hello World Again</title>
     <url>/2020/03/27/Hello-World-Again/</url>
-    <content><![CDATA[<p>探索好久，终于是有了些眉目，用hexo生成静态页面之后速度果然快了很多。<br>虽然有比较完整的教程吧，但是自己实践的时候还是遇到各种奇怪的问题，不断尝试最终也还是成功了啊XD<br>那么这个网站就是Ar的Minecraft<del>水贴</del>站了，平时水点原版模组就扔上来好了。<br>再一次，你好，世界。<br><del>另外得去学学markdown语法</del></p>
+    <content><![CDATA[<p>探索好久，终于是有了些眉目，用hexo生成静态页面之后速度果然快了很多。<br>虽然有比较完整的教程吧，但是自己实践的时候还是遇到各种奇怪的问题，不断尝试最终也还是成功了啊XD<br>那么这个网站就是Ar的Minecraft<del>水贴</del>站了，平时水点原版模组就扔上来好了。<br>再一次，你好，世界。</p>
+<p><del>另外得去学学markdown语法</del></p>
 ]]></content>
       <tags>
         <tag>strange</tag>
