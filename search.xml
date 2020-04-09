@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>同步blog到gitee</title>
+    <url>/2020/04/09/%E5%90%8C%E6%AD%A5blog%E5%88%B0gitee/</url>
+    <content><![CDATA[<p>其实github速度还算可以（也有可能是缓存的原因），不过我还是去看了下gitee。<br>gitee毕竟还是在国内，速度肯定要比github快很多，而且仓库导入做得也不错，所以就同步一个吧。<br>post还是在本地写完上传github，然后在gitee那里复制仓库内容导过去，不算方便，但也可接受。<br>（有空再捣鼓一下直接传到gitee，应该不会太费劲，但那是后话了）</p>
+<a id="more"></a>
+<p>弄好之后试了一下，两边速度基本看不出太大差异，不过一些插件还是gitee那边快不少。<br>内部页面的加载速度也是gitee更胜一筹。</p>
+<p><img src="http://q7vmrdbrg.bkt.clouddn.com/gitee.png" alt="gitee的加载速度更胜一筹"></p>
+<p><img src="http://q7vmrdbrg.bkt.clouddn.com/github.png" alt="github加载略慢"></p>
+<p>两边的内容都是一样的（除非我忘了更新gitee），所以可以优先去访问gitee.io，毕竟还是快一点。</p>
+]]></content>
+      <tags>
+        <tag>strange</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>尝试做一张cover</title>
     <url>/2020/04/02/%E5%B0%9D%E8%AF%95%E5%81%9A%E4%B8%80%E5%BC%A0cover/</url>
     <content><![CDATA[<p>最近呢，想要自定义一下首页的cover。毕竟这是个Minecraft的站点，所以想要以Minecraft为题材做这么一张图片。<br>原图其实还蛮好看的，不过对比度似乎高了点，不太符合整体风格。所以我想用双色调风格，颜色也要偏向白/灰/黑之类的。<br>再加上我是个CBer（？），所以要和命令元素相关，画面中最好有一些技术性内容。<br>那么一番构（luan）思（xiang）之后，有了以下方案：</p>
