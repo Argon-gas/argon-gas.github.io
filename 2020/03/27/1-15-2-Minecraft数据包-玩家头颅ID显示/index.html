@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">389字</span>
+            <span class="post-count">427字</span>
         </span>
     </span>
 
@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">2分钟</span>
         </span>
     </span>
 </div>
@@ -105,16 +105,38 @@
 <p><img src="http://q7vmrdbrg.bkt.clouddn.com/2020-03-27_22.07.49.png" alt="演示2"></p>
 <p><img src="http://q7vmrdbrg.bkt.clouddn.com/2020-03-27_22.08.48.png" alt="演示3"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>首先是通过进度判断玩家放下头颅，要注意的是头颅放在地上和墙上的id不同，当时我就被这个坑了好久（</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"criteria"</span>: &#123;</span><br><span class="line">        <span class="attr">"put_head"</span>: &#123;</span><br><span class="line">            <span class="attr">"trigger"</span>: <span class="string">"minecraft:placed_block"</span>,</span><br><span class="line">            <span class="attr">"conditions"</span>: &#123;</span><br><span class="line">                <span class="attr">"block"</span>: <span class="string">"minecraft:player_head"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"rewards"</span>: &#123;</span><br><span class="line">        <span class="attr">"function"</span>: <span class="string">"skull:reset"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"criteria"</span>: &#123;</span><br><span class="line">        <span class="attr">"put_head"</span>: &#123;</span><br><span class="line">            <span class="attr">"trigger"</span>: <span class="string">"minecraft:placed_block"</span>,</span><br><span class="line">            <span class="attr">"conditions"</span>: &#123;</span><br><span class="line">                <span class="attr">"block"</span>: <span class="string">"minecraft:player_wall_head"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"rewards"</span>: &#123;</span><br><span class="line">        <span class="attr">"function"</span>: <span class="string">"skull:reset"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="json">{
+    &quot;criteria&quot;: {
+        &quot;put_head&quot;: {
+            &quot;trigger&quot;: &quot;minecraft:placed_block&quot;,
+            &quot;conditions&quot;: {
+                &quot;block&quot;: &quot;minecraft:player_head&quot;
+            }
+        }
+    },
+    &quot;rewards&quot;: {
+        &quot;function&quot;: &quot;skull:reset&quot;
+    }
+}</code></pre>
+<pre><code class="json">{
+    &quot;criteria&quot;: {
+        &quot;put_head&quot;: {
+            &quot;trigger&quot;: &quot;minecraft:placed_block&quot;,
+            &quot;conditions&quot;: {
+                &quot;block&quot;: &quot;minecraft:player_wall_head&quot;
+            }
+        }
+    },
+    &quot;rewards&quot;: {
+        &quot;function&quot;: &quot;skull:reset&quot;
+    }
+}</code></pre>
 <p>然后通过视线追踪在头颅位置生成maker，并对齐方块中央。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">execute if entity @s[distance=..6] if block ~ ~ ~ #player_head positioned ^ ^ ^ run summon armor_stand ~ ~ ~ &#123;Invisible:1b,Invulnerable:1b,Marker:1b,Tags:["skull-name"],Small:1b&#125;</span><br><span class="line">execute if entity @s[distance=..6] unless block ~ ~ ~ #player_head positioned ^ ^ ^0.005 run function skull:ray</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">execute if entity @s[distance=..6] if block ~ ~ ~ #player_head positioned ^ ^ ^ run summon armor_stand ~ ~ ~ {Invisible:1b,Invulnerable:1b,Marker:1b,Tags:[&quot;skull-name&quot;],Small:1b}
+execute if entity @s[distance=..6] unless block ~ ~ ~ #player_head positioned ^ ^ ^0.005 run function skull:ray</code></pre>
 <p>然后通过牌子获取到头颅的用户ID，使用<em>interpret</em>拍扁</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run setblock ~ ~2 ~ minecraft:oak_sign&#123;Text1:"&#123;\"block\":\"~ ~-2 ~\",\"nbt\":\"Owner.Name\",\"interpret\":false&#125;",Text2:"&#123;\"text\":\"\"&#125;",Text3:"&#123;\"text\":\"\"&#125;",Text4:"&#123;\"text\":\"\"&#125;"&#125;</span><br><span class="line">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run data modify entity @s CustomName set from block ~ ~2 ~ Text1</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run setblock ~ ~2 ~ minecraft:oak_sign{Text1:&quot;{\&quot;block\&quot;:\&quot;~ ~-2 ~\&quot;,\&quot;nbt\&quot;:\&quot;Owner.Name\&quot;,\&quot;interpret\&quot;:false}&quot;,Text2:&quot;{\&quot;text\&quot;:\&quot;\&quot;}&quot;,Text3:&quot;{\&quot;text\&quot;:\&quot;\&quot;}&quot;,Text4:&quot;{\&quot;text\&quot;:\&quot;\&quot;}&quot;}
+execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run data modify entity @s CustomName set from block ~ ~2 ~ Text1</code></pre>
 <p>最后是羊毛染色的相关处理，偷懒直接改了队伍color。</p>
 <h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
 <li>黑洞群的bcb大佬和黑猫大佬提供技术支持</li>
@@ -143,55 +165,6 @@
         </div>
         
     <footer class="article-footer">
-      
-          
-<div class="share-btn">
-      <span class="share-sns share-outer">
-        <i class="ri-share-forward-line"></i>
-        分享
-      </span>
-      <div class="share-wrap">
-        <i class="arrow"></i>
-        <div class="share-icons">
-          
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="ri-weibo-fill"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="ri-wechat-fill"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="ri-qq-fill"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="ri-douban-line"></i>
-          </a>
-          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a> -->
-          
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="ri-facebook-circle-fill"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="ri-twitter-fill"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="ri-google-fill"></i>
-          </a>
-        </div>
-      </div>
-</div>
-
-<div class="wx-share-modal">
-    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://argon-gas.github.io/2020/03/27/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E7%8E%A9%E5%AE%B6%E5%A4%B4%E9%A2%85ID%E6%98%BE%E7%A4%BA/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div id="share-mask"></div>
       
       
   <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/commands/" rel="tag">commands</a></li></ul>

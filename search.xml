@@ -26,6 +26,9 @@
 <p>所以最后还是选了第一种方案，只不过把各种奇怪生物全删掉了，留了一只creeper，最后出来的效果其实还不错，调色感觉也比较符合整体效果。</p>
 <p><img src="http://q7vmrdbrg.bkt.clouddn.com/cover10" alt="cover"></p>
 <p>以后会多做几张类似风格的，再做个自动轮换岂不美哉。</p>
+<hr>
+<p>2020.4.10 更新</p>
+<p><img src="http://q7vmrdbrg.bkt.clouddn.com/cover11" alt="cover"></p>
 ]]></content>
       <tags>
         <tag>strange</tag>
@@ -40,14 +43,14 @@
 <h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示:<br><a href="https://www.bilibili.com/video/BV1xE411P7UL" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411P7UL</a></p>
 <p><img src="http://q7vmrdbrg.bkt.clouddn.com/2020-03-28_13.06.10.png" alt="演示1"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>判断玩家手持特殊胡萝卜杆，然后右键时视线追踪</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">execute if entity @s[distance=..7] if block ~ ~ ~ #carry:chest run summon minecraft:armor_stand ~ ~ ~ &#123;Tags:["carry-maker"],Invisible:1b,Marker:1b,NoGravity:1b&#125;</span><br><span class="line">execute if entity @s[distance=..7] unless block ~ ~ ~ #carry:chest positioned ^ ^ ^0.005 run function carry:ray1</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">execute if entity @s[distance=..7] if block ~ ~ ~ #carry:chest run summon minecraft:armor_stand ~ ~ ~ {Tags:[&quot;carry-maker&quot;],Invisible:1b,Marker:1b,NoGravity:1b}
+execute if entity @s[distance=..7] unless block ~ ~ ~ #carry:chest positioned ^ ^ ^0.005 run function carry:ray1</code></pre>
 <p>判断为箱子（包括陷阱箱）则在此处生成maker，然后将箱子的Items标签存进storage</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">execute as <span class="meta">@e</span>[type=armor_stand,tag=carry-maker] at <span class="meta">@s</span> run data modify storage carry Items set from block ~ ~ ~ Items</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">execute as @e[type=armor_stand,tag=carry-maker] at @s run data modify storage carry Items set from block ~ ~ ~ Items</code></pre>
 <p>清除箱子，并在最近玩家处生成箱子物品（偷懒了，这里的判断并不准确），将storage里标签再转回去</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">execute as <span class="meta">@e</span>[type=armor_stand,tag=carry-maker] at <span class="meta">@p</span>[scores=&#123;carry-used=<span class="number">1</span>&#125;] run summon item ~ ~<span class="number">1</span> ~ &#123;Tags:[<span class="string">"carry"</span>],Item:&#123;id:<span class="string">"minecraft:chest"</span>,Count:<span class="number">1</span>b&#125;&#125;</span><br><span class="line">execute as <span class="meta">@e</span>[type=item,tag=carry,nbt=&#123;Item:&#123;id:<span class="string">"minecraft:chest"</span>&#125;&#125;] run data modify entity <span class="meta">@s</span> Item.tag.BlockEntityTag.Items set from storage carry Items</span><br><span class="line">execute as <span class="meta">@e</span>[type=item,tag=carry,nbt=&#123;Item:&#123;id:<span class="string">"minecraft:chest"</span>&#125;&#125;] run data merge entity <span class="meta">@s</span> &#123;PickupDelay:<span class="number">0</span>s&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">execute as @e[type=armor_stand,tag=carry-maker] at @p[scores={carry-used=1}] run summon item ~ ~1 ~ {Tags:[&quot;carry&quot;],Item:{id:&quot;minecraft:chest&quot;,Count:1b}}
+execute as @e[type=item,tag=carry,nbt={Item:{id:&quot;minecraft:chest&quot;}}] run data modify entity @s Item.tag.BlockEntityTag.Items set from storage carry Items
+execute as @e[type=item,tag=carry,nbt={Item:{id:&quot;minecraft:chest&quot;}}] run data merge entity @s {PickupDelay:0s}</code></pre>
 <p>这个包总体来说挺简陋的，钓竿没做合成，没画材质，没做耐久（<br>可能有空会更新吧。<del>但是估计永远不会再重写了</del></p>
 <h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
 <li>dhp真好用</li>
@@ -69,16 +72,38 @@
 <p><img src="http://q7vmrdbrg.bkt.clouddn.com/2020-03-27_22.07.49.png" alt="演示2"></p>
 <p><img src="http://q7vmrdbrg.bkt.clouddn.com/2020-03-27_22.08.48.png" alt="演示3"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>首先是通过进度判断玩家放下头颅，要注意的是头颅放在地上和墙上的id不同，当时我就被这个坑了好久（</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"criteria"</span>: &#123;</span><br><span class="line">        <span class="attr">"put_head"</span>: &#123;</span><br><span class="line">            <span class="attr">"trigger"</span>: <span class="string">"minecraft:placed_block"</span>,</span><br><span class="line">            <span class="attr">"conditions"</span>: &#123;</span><br><span class="line">                <span class="attr">"block"</span>: <span class="string">"minecraft:player_head"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"rewards"</span>: &#123;</span><br><span class="line">        <span class="attr">"function"</span>: <span class="string">"skull:reset"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"criteria"</span>: &#123;</span><br><span class="line">        <span class="attr">"put_head"</span>: &#123;</span><br><span class="line">            <span class="attr">"trigger"</span>: <span class="string">"minecraft:placed_block"</span>,</span><br><span class="line">            <span class="attr">"conditions"</span>: &#123;</span><br><span class="line">                <span class="attr">"block"</span>: <span class="string">"minecraft:player_wall_head"</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">"rewards"</span>: &#123;</span><br><span class="line">        <span class="attr">"function"</span>: <span class="string">"skull:reset"</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<pre><code class="json">{
+    &quot;criteria&quot;: {
+        &quot;put_head&quot;: {
+            &quot;trigger&quot;: &quot;minecraft:placed_block&quot;,
+            &quot;conditions&quot;: {
+                &quot;block&quot;: &quot;minecraft:player_head&quot;
+            }
+        }
+    },
+    &quot;rewards&quot;: {
+        &quot;function&quot;: &quot;skull:reset&quot;
+    }
+}</code></pre>
+<pre><code class="json">{
+    &quot;criteria&quot;: {
+        &quot;put_head&quot;: {
+            &quot;trigger&quot;: &quot;minecraft:placed_block&quot;,
+            &quot;conditions&quot;: {
+                &quot;block&quot;: &quot;minecraft:player_wall_head&quot;
+            }
+        }
+    },
+    &quot;rewards&quot;: {
+        &quot;function&quot;: &quot;skull:reset&quot;
+    }
+}</code></pre>
 <p>然后通过视线追踪在头颅位置生成maker，并对齐方块中央。</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">execute if entity @s[distance=..6] if block ~ ~ ~ #player_head positioned ^ ^ ^ run summon armor_stand ~ ~ ~ &#123;Invisible:1b,Invulnerable:1b,Marker:1b,Tags:["skull-name"],Small:1b&#125;</span><br><span class="line">execute if entity @s[distance=..6] unless block ~ ~ ~ #player_head positioned ^ ^ ^0.005 run function skull:ray</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">execute if entity @s[distance=..6] if block ~ ~ ~ #player_head positioned ^ ^ ^ run summon armor_stand ~ ~ ~ {Invisible:1b,Invulnerable:1b,Marker:1b,Tags:[&quot;skull-name&quot;],Small:1b}
+execute if entity @s[distance=..6] unless block ~ ~ ~ #player_head positioned ^ ^ ^0.005 run function skull:ray</code></pre>
 <p>然后通过牌子获取到头颅的用户ID，使用<em>interpret</em>拍扁</p>
-<figure class="highlight"><table><tr><td class="code"><pre><span class="line">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run setblock ~ ~2 ~ minecraft:oak_sign&#123;Text1:"&#123;\"block\":\"~ ~-2 ~\",\"nbt\":\"Owner.Name\",\"interpret\":false&#125;",Text2:"&#123;\"text\":\"\"&#125;",Text3:"&#123;\"text\":\"\"&#125;",Text4:"&#123;\"text\":\"\"&#125;"&#125;</span><br><span class="line">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run data modify entity @s CustomName set from block ~ ~2 ~ Text1</span><br></pre></td></tr></table></figure>
-
+<pre><code class="java">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run setblock ~ ~2 ~ minecraft:oak_sign{Text1:&quot;{\&quot;block\&quot;:\&quot;~ ~-2 ~\&quot;,\&quot;nbt\&quot;:\&quot;Owner.Name\&quot;,\&quot;interpret\&quot;:false}&quot;,Text2:&quot;{\&quot;text\&quot;:\&quot;\&quot;}&quot;,Text3:&quot;{\&quot;text\&quot;:\&quot;\&quot;}&quot;,Text4:&quot;{\&quot;text\&quot;:\&quot;\&quot;}&quot;}
+execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run data modify entity @s CustomName set from block ~ ~2 ~ Text1</code></pre>
 <p>最后是羊毛染色的相关处理，偷懒直接改了队伍color。</p>
 <h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
 <li>黑洞群的bcb大佬和黑猫大佬提供技术支持</li>
@@ -106,17 +131,13 @@
     <url>/2020/03/27/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
 <a id="more"></a>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
       <tags>
