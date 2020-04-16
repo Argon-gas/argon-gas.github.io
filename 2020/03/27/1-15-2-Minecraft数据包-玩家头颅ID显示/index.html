@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">427字</span>
+            <span class="post-count">389字</span>
         </span>
     </span>
 
@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">2分钟</span>
+            <span class="post-count">1分钟</span>
         </span>
     </span>
 </div>
@@ -105,38 +105,16 @@
 <p><img src="http://q7vmrdbrg.bkt.clouddn.com/2020-03-27_22.07.49.png" alt="演示2"></p>
 <p><img src="http://q7vmrdbrg.bkt.clouddn.com/2020-03-27_22.08.48.png" alt="演示3"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>首先是通过进度判断玩家放下头颅，要注意的是头颅放在地上和墙上的id不同，当时我就被这个坑了好久（</p>
-<pre><code class="json">{
-    &quot;criteria&quot;: {
-        &quot;put_head&quot;: {
-            &quot;trigger&quot;: &quot;minecraft:placed_block&quot;,
-            &quot;conditions&quot;: {
-                &quot;block&quot;: &quot;minecraft:player_head&quot;
-            }
-        }
-    },
-    &quot;rewards&quot;: {
-        &quot;function&quot;: &quot;skull:reset&quot;
-    }
-}</code></pre>
-<pre><code class="json">{
-    &quot;criteria&quot;: {
-        &quot;put_head&quot;: {
-            &quot;trigger&quot;: &quot;minecraft:placed_block&quot;,
-            &quot;conditions&quot;: {
-                &quot;block&quot;: &quot;minecraft:player_wall_head&quot;
-            }
-        }
-    },
-    &quot;rewards&quot;: {
-        &quot;function&quot;: &quot;skull:reset&quot;
-    }
-}</code></pre>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"criteria"</span>: &#123;<br>        <span class="hljs-attr">"put_head"</span>: &#123;<br>            <span class="hljs-attr">"trigger"</span>: <span class="hljs-string">"minecraft:placed_block"</span>,<br>            <span class="hljs-attr">"conditions"</span>: &#123;<br>                <span class="hljs-attr">"block"</span>: <span class="hljs-string">"minecraft:player_head"</span><br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">"rewards"</span>: &#123;<br>        <span class="hljs-attr">"function"</span>: <span class="hljs-string">"skull:reset"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"criteria"</span>: &#123;<br>        <span class="hljs-attr">"put_head"</span>: &#123;<br>            <span class="hljs-attr">"trigger"</span>: <span class="hljs-string">"minecraft:placed_block"</span>,<br>            <span class="hljs-attr">"conditions"</span>: &#123;<br>                <span class="hljs-attr">"block"</span>: <span class="hljs-string">"minecraft:player_wall_head"</span><br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">"rewards"</span>: &#123;<br>        <span class="hljs-attr">"function"</span>: <span class="hljs-string">"skull:reset"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 <p>然后通过视线追踪在头颅位置生成maker，并对齐方块中央。</p>
-<pre><code class="java">execute if entity @s[distance=..6] if block ~ ~ ~ #player_head positioned ^ ^ ^ run summon armor_stand ~ ~ ~ {Invisible:1b,Invulnerable:1b,Marker:1b,Tags:[&quot;skull-name&quot;],Small:1b}
-execute if entity @s[distance=..6] unless block ~ ~ ~ #player_head positioned ^ ^ ^0.005 run function skull:ray</code></pre>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">execute if entity @s[distance=..6] if block ~ ~ ~ #player_head positioned ^ ^ ^ run summon armor_stand ~ ~ ~ &#123;Invisible:1b,Invulnerable:1b,Marker:1b,Tags:["skull-name"],Small:1b&#125;<br>execute if entity @s[distance=..6] unless block ~ ~ ~ #player_head positioned ^ ^ ^0.005 run function skull:ray<br></code></pre></td></tr></table></figure>
+
 <p>然后通过牌子获取到头颅的用户ID，使用<em>interpret</em>拍扁</p>
-<pre><code class="java">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run setblock ~ ~2 ~ minecraft:oak_sign{Text1:&quot;{\&quot;block\&quot;:\&quot;~ ~-2 ~\&quot;,\&quot;nbt\&quot;:\&quot;Owner.Name\&quot;,\&quot;interpret\&quot;:false}&quot;,Text2:&quot;{\&quot;text\&quot;:\&quot;\&quot;}&quot;,Text3:&quot;{\&quot;text\&quot;:\&quot;\&quot;}&quot;,Text4:&quot;{\&quot;text\&quot;:\&quot;\&quot;}&quot;}
-execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run data modify entity @s CustomName set from block ~ ~2 ~ Text1</code></pre>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run setblock ~ ~2 ~ minecraft:oak_sign&#123;Text1:"&#123;\"block\":\"~ ~-2 ~\",\"nbt\":\"Owner.Name\",\"interpret\":false&#125;",Text2:"&#123;\"text\":\"\"&#125;",Text3:"&#123;\"text\":\"\"&#125;",Text4:"&#123;\"text\":\"\"&#125;"&#125;<br>execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run data modify entity @s CustomName set from block ~ ~2 ~ Text1<br></code></pre></td></tr></table></figure>
+
 <p>最后是羊毛染色的相关处理，偷懒直接改了队伍color。</p>
 <h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
 <li>黑洞群的bcb大佬和黑猫大佬提供技术支持</li>
