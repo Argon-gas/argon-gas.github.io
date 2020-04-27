@@ -7,8 +7,8 @@
 <a id="more"></a>
 
 <h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：<br><a href="https://www.bilibili.com/video/BV1qT4y1G79T" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1qT4y1G79T</a></p>
-<p><img src="" alt="演示1"></p>
-<p><img src="" alt="演示2"></p>
+<p><img src="https://s1.ax1x.com/2020/04/27/JRHt5F.md.png" alt="演示1"></p>
+<p><img src="https://s1.ax1x.com/2020/04/27/JRHJET.md.png" alt="演示2"></p>
 <p>使用</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">/function chestmenu:on<br>/function chestmenu:off<br></code></pre></td></tr></table></figure>
 
@@ -45,6 +45,10 @@
 </li>
 <li><p>特仑苏牛奶</p>
 </li>
+</ul>
+<h2 id="更新列表"><a href="#更新列表" class="headerlink" title="更新列表"></a>更新列表</h2><ul>
+<li>v1.0 发布</li>
+<li>v1.1 修复了生成菜单时执行奇怪指令的BUG<pre><code>更改了矿车菜单的生成方式，现在可以手持特定nbt物品打开菜单了</code></pre></li>
 </ul>
 <h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接：<a href="https://pan.baidu.com/s/1J31nD6oOvMuR0-mnbLqLVg" target="_blank" rel="noopener">https://pan.baidu.com/s/1J31nD6oOvMuR0-mnbLqLVg</a><br>提取码：crph</p>
 ]]></content>
@@ -93,7 +97,7 @@
 <a id="more"></a>
 
 <h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示:<br><a href="https://www.bilibili.com/video/BV1xE411P7UL" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411P7UL</a></p>
-<p><img src="http://q7vmrdbrg.bkt.clouddn.com/2020-03-28_13.06.10.png" alt="演示1"></p>
+<p><img src="https://s1.ax1x.com/2020/04/27/JRHUC4.md.png" alt="演示1"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>判断玩家手持特殊胡萝卜杆，然后右键时视线追踪</p>
 <figure class="highlight"><table><tr><td class="code"><pre><code class="hljs java">execute if entity @s[distance=..7] if block ~ ~ ~ #carry:chest run summon minecraft:armor_stand ~ ~ ~ &#123;Tags:["carry-maker"],Invisible:1b,Marker:1b,NoGravity:1b&#125;<br>execute if entity @s[distance=..7] unless block ~ ~ ~ #carry:chest positioned ^ ^ ^0.005 run function carry:ray1<br></code></pre></td></tr></table></figure>
 
@@ -120,9 +124,9 @@
 <a id="more"></a>
 
 <h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：<br><a href="https://www.bilibili.com/video/BV1xE411p7FW" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411p7FW</a></p>
-<p><img src="http://q7vmrdbrg.bkt.clouddn.com/2020-03-27_22.03.29.png" alt="演示1"></p>
-<p><img src="http://q7vmrdbrg.bkt.clouddn.com/2020-03-27_22.07.49.png" alt="演示2"></p>
-<p><img src="http://q7vmrdbrg.bkt.clouddn.com/2020-03-27_22.08.48.png" alt="演示3"></p>
+<p><img src="https://s1.ax1x.com/2020/04/27/JRHwvR.md.png" alt="演示1"></p>
+<p><img src="https://s1.ax1x.com/2020/04/27/JRHd29.md.png" alt="演示2"></p>
+<p><img src="https://s1.ax1x.com/2020/04/27/JRHa8J.md.png" alt="演示3"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>首先是通过进度判断玩家放下头颅，要注意的是头颅放在地上和墙上的id不同，当时我就被这个坑了好久（</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"criteria"</span>: &#123;<br>        <span class="hljs-attr">"put_head"</span>: &#123;<br>            <span class="hljs-attr">"trigger"</span>: <span class="hljs-string">"minecraft:placed_block"</span>,<br>            <span class="hljs-attr">"conditions"</span>: &#123;<br>                <span class="hljs-attr">"block"</span>: <span class="hljs-string">"minecraft:player_head"</span><br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">"rewards"</span>: &#123;<br>        <span class="hljs-attr">"function"</span>: <span class="hljs-string">"skull:reset"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
