@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.2k字</span>
+            <span class="post-count">1.3k字</span>
         </span>
     </span>
 
@@ -129,13 +129,16 @@
 <p>如果系统关闭后，maker被删掉，箱子菜单无法使用，会出现提示内容</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java">execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-export] at <span class="hljs-meta">@s</span> run data modify block ~ ~ ~ Items set from entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-tag2,limit=<span class="hljs-number">1</span>] Items<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-export] at <span class="hljs-meta">@s</span> unless entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-compare] run tellraw <span class="hljs-meta">@p</span> [<span class="hljs-string">""</span>,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"哦吼，ChestMenu系统好像坏掉勒\n"</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"gold"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"请使用 "</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"gold"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"/function chestmenu:on "</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"red"</span>,<span class="hljs-string">"blod"</span>:<span class="hljs-keyword">true</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"以重置系统"</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"gold"</span>&#125;]<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-export] at <span class="hljs-meta">@s</span> unless entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-compare] run fill ~ ~ ~ ~ ~ ~ air replace minecraft:chest<br><br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-export] at <span class="hljs-meta">@s</span> run data modify entity <span class="hljs-meta">@s</span> Items set from entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-tag4,limit=<span class="hljs-number">1</span>] Items<br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-export] at <span class="hljs-meta">@s</span> unless entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-compare2] run tellraw <span class="hljs-meta">@p</span> [<span class="hljs-string">""</span>,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"哦吼，ChestMenu系统好像坏掉勒\n"</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"gold"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"请使用 "</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"gold"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"/function chestmenu:on "</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"red"</span>,<span class="hljs-string">"blod"</span>:<span class="hljs-keyword">true</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"以重置系统"</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"gold"</span>&#125;]<br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-export] at <span class="hljs-meta">@s</span> unless entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-compare2] run tp <span class="hljs-meta">@s</span> ~ ~-<span class="hljs-number">1210</span> ~<br></code></pre></td></tr></table></figure>
 
-<p>目前就是这样，还有点小BUG没修<br>自己也有一些其他的想法还没实现<br>这个包可能会不断更新的吧，不过自己大概是没时间了。</p>
+<p>现在可以手持特定nbt物品<em>{id:”minecartmenu”}</em>打开菜单了<br>通过断言判断玩家手持特定的物品，然后在直接玩家脸上糊个箱子矿车</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"condition"</span>:<span class="hljs-string">"minecraft:entity_properties"</span>,<br>    <span class="hljs-attr">"entity"</span>: <span class="hljs-string">"this"</span>,<br>    <span class="hljs-attr">"predicate"</span>: &#123;<br>        <span class="hljs-attr">"equipment"</span>:&#123;<br>            <span class="hljs-attr">"mainhand"</span>:&#123;<br>                <span class="hljs-attr">"nbt"</span>: <span class="hljs-string">"&#123;id:\"minecartmenu\"&#125;"</span><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>还在持续更新，自己也有一些其他的想法想尝试实现，不过自己大概是没时间了。</p>
 <h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
-<li><p>VCS雨弓，提供了核心思路</p>
+<li><p>雨弓，提供了核心思路</p>
 </li>
 <li><p>spg，dhp真好用</p>
 </li>
-<li><p>黑猫，UIN</p>
+<li><p>⊙v⊙，UIN标签</p>
 </li>
 <li><p>特仑苏牛奶</p>
 </li>
@@ -145,7 +148,7 @@
 <li>v1.1 修复了生成菜单时执行奇怪指令的BUG</li>
 <li>更改了矿车菜单的生成方式，现在可以手持特定nbt物品打开菜单了</li>
 </ul>
-<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接：<a href="https://pan.baidu.com/s/1J31nD6oOvMuR0-mnbLqLVg" target="_blank" rel="noopener">https://pan.baidu.com/s/1J31nD6oOvMuR0-mnbLqLVg</a><br>提取码：crph</p>
+<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接：<a href="https://pan.baidu.com/share/init?surl=CSeJp3EH6_oOAo9VJE6VXA" target="_blank" rel="noopener">https://pan.baidu.com/share/init?surl=CSeJp3EH6_oOAo9VJE6VXA</a><br>提取码：96m5</p>
 
       
       <!-- reward -->
