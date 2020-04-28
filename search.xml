@@ -7,8 +7,8 @@
 <a id="more"></a>
 
 <h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：<br><a href="https://www.bilibili.com/video/BV1qT4y1G79T" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1qT4y1G79T</a></p>
-<p><img src="https://s1.ax1x.com/2020/04/27/JRHt5F.md.png" alt="演示1"></p>
-<p><img src="https://s1.ax1x.com/2020/04/27/JRHJET.md.png" alt="演示2"></p>
+<p><img src="https://s1.ax1x.com/2020/04/28/J4n75t.png" alt="演示1"></p>
+<p><img src="https://s1.ax1x.com/2020/04/27/JRHJET.png" alt="演示2"></p>
 <p>使用</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">/function chestmenu:on<br>/function chestmenu:off<br></code></pre></td></tr></table></figure>
 
@@ -66,8 +66,8 @@
     <content><![CDATA[<p>其实github速度还算可以（也有可能是缓存的原因），不过我还是去看了下gitee。<br>gitee毕竟还是在国内，速度肯定要比github快很多，而且仓库导入做得也不错，所以就同步一个吧。<br>post还是在本地写完上传github，然后在gitee那里复制仓库内容导过去，不算方便，但也可接受。<br>（有空再捣鼓一下直接传到gitee，应该不会太费劲，但那是后话了）</p>
 <a id="more"></a>
 <p>弄好之后试了一下，两边速度基本看不出太大差异，不过一些插件还是gitee那边快不少。<br>内部页面的加载速度也是gitee更胜一筹。</p>
-<p><img src="https://s1.ax1x.com/2020/04/27/JROjYT.png" alt="gitee的加载速度更胜一筹"></p>
-<p><img src="https://s1.ax1x.com/2020/04/27/JRja8O.png" alt="github加载略慢"></p>
+<p><img src="https://s1.ax1x.com/2020/04/28/J4ndvF.png" alt="gitee更胜一筹"></p>
+<p><img src="https://s1.ax1x.com/2020/04/28/J4n0u4.png" alt="github加载略慢"></p>
 <p>两边的内容都是一样的（除非我忘了更新gitee），所以可以优先去访问gitee.io，毕竟还是快一点。</p>
 ]]></content>
       <tags>
@@ -84,11 +84,11 @@
 <p>后来又想搭个小场景，画了十分钟建了一个，怎么看怎么丑，作罢。</p>
 <p>又想用c4d，mi之类的渲染一张，但是水平有限，作罢。</p>
 <p>所以最后还是选了第一种方案，只不过把各种奇怪生物全删掉了，留了一只creeper，最后出来的效果其实还不错，调色感觉也比较符合整体效果。</p>
-<p><img src="https://s1.ax1x.com/2020/04/27/JRTfFe.md.png" alt="cover"></p>
+<p><img src="https://s1.ax1x.com/2020/04/27/JRTfFe.png" alt="cover"></p>
 <p>以后会多做几张类似风格的，再做个自动轮换岂不美哉。</p>
 <hr>
 <p>2020.4.10 更新</p>
-<p><img src="https://s1.ax1x.com/2020/04/27/JRThJH.md.png" alt="cover"></p>
+<p><img src="https://s1.ax1x.com/2020/04/27/JRThJH.png" alt="cover"></p>
 ]]></content>
       <tags>
         <tag>strange</tag>
@@ -101,7 +101,7 @@
 <a id="more"></a>
 
 <h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示:<br><a href="https://www.bilibili.com/video/BV1xE411P7UL" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411P7UL</a></p>
-<p><img src="https://s1.ax1x.com/2020/04/27/JRHUC4.md.png" alt="演示1"></p>
+<p><img src="https://s1.ax1x.com/2020/04/28/J4nTUI.png" alt="演示1"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>判断玩家手持特殊胡萝卜杆，然后右键时视线追踪</p>
 <figure class="highlight"><table><tr><td class="code"><pre><code class="hljs java">execute if entity @s[distance=..7] if block ~ ~ ~ #carry:chest run summon minecraft:armor_stand ~ ~ ~ &#123;Tags:["carry-maker"],Invisible:1b,Marker:1b,NoGravity:1b&#125;<br>execute if entity @s[distance=..7] unless block ~ ~ ~ #carry:chest positioned ^ ^ ^0.005 run function carry:ray1<br></code></pre></td></tr></table></figure>
 
@@ -128,9 +128,9 @@
 <a id="more"></a>
 
 <h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：<br><a href="https://www.bilibili.com/video/BV1xE411p7FW" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411p7FW</a></p>
-<p><img src="https://s1.ax1x.com/2020/04/27/JRHwvR.md.png" alt="演示1"></p>
-<p><img src="https://s1.ax1x.com/2020/04/27/JRHd29.md.png" alt="演示2"></p>
-<p><img src="https://s1.ax1x.com/2020/04/27/JRHa8J.md.png" alt="演示3"></p>
+<p><img src="https://s1.ax1x.com/2020/04/28/J4n28K.png" alt="演示1"></p>
+<p><img src="https://s1.ax1x.com/2020/04/28/J4nWvD.png" alt="演示2"></p>
+<p><img src="https://s1.ax1x.com/2020/04/28/J4nRgO.png" alt="演示3"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>首先是通过进度判断玩家放下头颅，要注意的是头颅放在地上和墙上的id不同，当时我就被这个坑了好久（</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"criteria"</span>: &#123;<br>        <span class="hljs-attr">"put_head"</span>: &#123;<br>            <span class="hljs-attr">"trigger"</span>: <span class="hljs-string">"minecraft:placed_block"</span>,<br>            <span class="hljs-attr">"conditions"</span>: &#123;<br>                <span class="hljs-attr">"block"</span>: <span class="hljs-string">"minecraft:player_head"</span><br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">"rewards"</span>: &#123;<br>        <span class="hljs-attr">"function"</span>: <span class="hljs-string">"skull:reset"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
