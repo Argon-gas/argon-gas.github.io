@@ -109,6 +109,11 @@
 <p>2020.4.30 更新</p>
 <p><img src="https://ae01.alicdn.com/kf/He2d4c302323249d787636e16a5caa662M.jpg" alt="cover"></p>
 <p>配色纠结了好久，不过成品我觉得还蛮好看的</p>
+<hr>
+<p>2020.6.25 更新<br><img src="https://ae01.alicdn.com/kf/H56dd2502d2944a5e83f4015e54d4a201r.jpg" alt="cover"></p>
+<p><img src="https://ae01.alicdn.com/kf/H08f21a5c4c2941e08815e4f39f09a1c8B.jpg" alt="cover"></p>
+<p><img src="https://ae01.alicdn.com/kf/Haa438cdb37514b6bb5f2c9415dd67fe2V.jpg" alt="cover"></p>
+<p>端午回来摸个鱼<br>这几张是从一张跑酷地图（Phantom Run 1.0.4）截来的，作者是我们喜闻乐见的iWacky<br>这几张相对于之前的几张来说，元素比较多，色调的比较奇怪，有种咖喱味(?)</p>
 ]]></content>
       <tags>
         <tag>strange</tag>
@@ -121,7 +126,7 @@
 <a id="more"></a>
 
 <h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示:<br><a href="https://www.bilibili.com/video/BV1xE411P7UL" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411P7UL</a></p>
-<p><img src="https://img.rruu.net/image/5eb0e47745d0f" alt="演示1"></p>
+<p><img src="https://img.rruu.net/image/5eb0e46b2c89a" alt="演示1"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>判断玩家手持特殊胡萝卜杆，然后右键时视线追踪</p>
 <figure class="highlight"><table><tr><td class="code"><pre><code class="hljs java">execute if entity @s[distance=..7] if block ~ ~ ~ #carry:chest run summon minecraft:armor_stand ~ ~ ~ &#123;Tags:["carry-maker"],Invisible:1b,Marker:1b,NoGravity:1b&#125;<br>execute if entity @s[distance=..7] unless block ~ ~ ~ #carry:chest positioned ^ ^ ^0.005 run function carry:ray1<br></code></pre></td></tr></table></figure>
 
