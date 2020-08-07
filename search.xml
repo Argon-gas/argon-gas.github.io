@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>[1.15.2]Minecraft数据包---蓄力靴</title>
+    <url>/2020/08/07/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E8%93%84%E5%8A%9B%E9%9D%B4/</url>
+    <content><![CDATA[<p>该数据包增加了物品：蓄力靴，能够让玩家通过潜行蓄力高跳</p>
+<a id="more"></a>
+
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><h1 id="在写了XD"><a href="#在写了XD" class="headerlink" title="在写了XD"></a>在写了XD</h1>]]></content>
+      <tags>
+        <tag>commands</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>换个图床</title>
     <url>/2020/04/28/%E6%8D%A2%E4%B8%AA%E5%9B%BE%E5%BA%8A/</url>
     <content><![CDATA[<p>之前是用七牛的云储存的当图床的，速度倒是很快，不过前段时间到期了<br>然后我才发现七牛的域名每半个月回收一次，这就很烦了，总不能半个月重新改一遍链接吧<br>然后又不想放在本地，github的加载速度不慢却也不能说快，所以改成图床了。</p>
