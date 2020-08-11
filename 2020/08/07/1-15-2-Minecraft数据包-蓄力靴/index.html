@@ -63,7 +63,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">39字</span>
+            <span class="post-count">502字</span>
         </span>
     </span>
 
@@ -72,7 +72,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">1分钟</span>
+            <span class="post-count">2分钟</span>
         </span>
     </span>
 </div>
@@ -100,7 +100,19 @@
       <p>该数据包增加了物品：蓄力靴，能够让玩家通过潜行蓄力高跳</p>
 <a id="more"></a>
 
-<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><h1 id="在写了XD"><a href="#在写了XD" class="headerlink" title="在写了XD"></a>在写了XD</h1>
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：<br><a href="https://www.bilibili.com/video/BV19f4y1X7zP" target="_blank" rel="noopener">https://www.bilibili.com/video/BV19f4y1X7zP</a></p>
+<p><img src="https://p.pstatp.com/origin/100110000f7c7cb70b06f" alt="演示1"></p>
+<h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>玩家蓄力，记分板加分，然后递归刷slime，最后刷个火球<br><del>slime的挤压效果比较弱的，所以递归刷很多才能比较明显的体现，但是火球的效果非常的大，所以只是在最后刷了一个，即便如此，还是飞得很高。</del></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs java">execute as <span class="hljs-meta">@s</span> at <span class="hljs-meta">@s</span> anchored feet positioned ^ ^ ^-<span class="hljs-number">0.3</span> run summon slime ~ ~-<span class="hljs-number">0.3</span> ~ &#123;Invulnerable:<span class="hljs-number">1</span>b,NoAI:<span class="hljs-number">1</span>b,Size:<span class="hljs-number">4</span>,Tags:[<span class="hljs-string">"boost-marker"</span>],ActiveEffects:[&#123;Id:<span class="hljs-number">14</span>,Amplifier:<span class="hljs-number">1</span>b,Duration:<span class="hljs-number">9999</span>,ShowParticles:<span class="hljs-keyword">false</span>&#125;]&#125;<br>effect give <span class="hljs-meta">@e</span>[type=slime,tag=boost-marker] resistance <span class="hljs-number">9999</span> <span class="hljs-number">10</span> <span class="hljs-keyword">true</span><br>effect give <span class="hljs-meta">@e</span>[type=slime,tag=boost-marker] invisibility <span class="hljs-number">9999</span> <span class="hljs-number">10</span> <span class="hljs-keyword">true</span><br>execute as <span class="hljs-meta">@s</span> at <span class="hljs-meta">@s</span> run scoreboard players remove <span class="hljs-meta">@s</span> upboots-sneak <span class="hljs-number">1</span><br>execute as <span class="hljs-meta">@s</span>[scores=&#123;upboots-sneak=<span class="hljs-number">1</span>..&#125;] at <span class="hljs-meta">@s</span> run function upboots:jump<br><br>execute as <span class="hljs-meta">@a</span>[scores=&#123;upboots-sneak=<span class="hljs-number">0</span>&#125;,tag=!fireball] at <span class="hljs-meta">@s</span> run summon fireball ~ ~<span class="hljs-number">0.3</span> ~ &#123;Motion:[<span class="hljs-number">0.0</span>d,-<span class="hljs-number">1.2</span>d,<span class="hljs-number">0.0</span>d],NoGravity:<span class="hljs-number">1</span>b,Invulnerable:<span class="hljs-number">1</span>b,ExplosionPower:-<span class="hljs-number">1</span>,direction:[<span class="hljs-number">0.0</span>d,-<span class="hljs-number">1.2</span>d,<span class="hljs-number">0.0</span>d]&#125;<br>execute as <span class="hljs-meta">@a</span>[scores=&#123;upboots-sneak=<span class="hljs-number">0</span>&#125;] at <span class="hljs-meta">@s</span> run tag <span class="hljs-meta">@s</span> add fireball<br></code></pre></td></tr></table></figure>
+
+<p><del>火球的 <em>ExplosionPower</em> 标签决定了它的爆炸威力，只能设置为整数，数值越大效果越强，但是如果为负值，就会威力很小，但是有很强的击退效果，这个datapack正是利用了这一点。不过这东西不稳定而且也不好控制，所以局限性还是挺大的。</del></p>
+<p>然后就没了，剩下一点后续的处理和一些actionbar的提示之类的。毕竟做的也很粗糙。<br>这个小玩意我写了两个版本，因为第一个版本实在不太行，基本没有竖直的高度变化，只能平地前进，令人很不爽。不过用了火球黑科技之后效果就好多了，这也就是这个datapack的核心之处。</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
+<li>dhp真好用</li>
+<li>很早之前某帖子给我的灵感，火球黑科技真是太棒了</li>
+</ul>
+<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接：<a href="https://pan.baidu.com/s/1L3PkoDUZv_UH18rBxK_VsQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1L3PkoDUZv_UH18rBxK_VsQ</a><br>提取码：dp31</p>
+
       
       <!-- reward -->
       
@@ -293,7 +305,7 @@
 <script>
   try {
     var typed = new Typed("#subtitle", {
-      strings: ['Welcome Ar&#39;s Minecraft Site', 'Hey you guys !', 'I&#39;m a CBer'],
+      strings: ['Welcome Ar&#39;s Minecraft Site', 'Hey you guys !', 'I&#39;m a CBer !'],
       startDelay: 10,
       typeSpeed: 200,
       loop: true,
@@ -449,6 +461,4 @@
 
     
   </div>
-</body>
-
-</html>
+<script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
