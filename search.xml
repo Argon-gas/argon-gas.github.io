@@ -6,7 +6,10 @@
     <content><![CDATA[<p>该数据包增加了物品：蓄力靴，能够让玩家通过潜行蓄力高跳</p>
 <a id="more"></a>
 
-<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：<br><a href="https://www.bilibili.com/video/BV19f4y1X7zP" target="_blank" rel="noopener">https://www.bilibili.com/video/BV19f4y1X7zP</a></p>
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：</p>
+<iframe src="//player.bilibili.com/player.html?aid=286570755&bvid=BV19f4y1X7zP&cid=218865023&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px"> </iframe>
+
+<p><a href="https://www.bilibili.com/video/BV19f4y1X7zP" target="_blank" rel="noopener">https://www.bilibili.com/video/BV19f4y1X7zP</a></p>
 <p><img src="https://p.pstatp.com/origin/100110000f7c7cb70b06f" alt="演示1"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>玩家蓄力，记分板加分，然后递归刷slime，最后刷个火球<br><del>slime的挤压效果比较弱的，所以递归刷很多才能比较明显的体现，但是火球的效果非常的大，所以只是在最后刷了一个，即便如此，还是飞得很高。</del></p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">execute as <span class="hljs-meta">@s</span> at <span class="hljs-meta">@s</span> anchored feet positioned ^ ^ ^-<span class="hljs-number">0.3</span> run summon slime ~ ~-<span class="hljs-number">0.3</span> ~ &#123;Invulnerable:<span class="hljs-number">1</span>b,NoAI:<span class="hljs-number">1</span>b,Size:<span class="hljs-number">4</span>,Tags:[<span class="hljs-string">"boost-marker"</span>],ActiveEffects:[&#123;Id:<span class="hljs-number">14</span>,Amplifier:<span class="hljs-number">1</span>b,Duration:<span class="hljs-number">9999</span>,ShowParticles:<span class="hljs-keyword">false</span>&#125;]&#125;<br>effect give <span class="hljs-meta">@e</span>[type=slime,tag=boost-marker] resistance <span class="hljs-number">9999</span> <span class="hljs-number">10</span> <span class="hljs-keyword">true</span><br>effect give <span class="hljs-meta">@e</span>[type=slime,tag=boost-marker] invisibility <span class="hljs-number">9999</span> <span class="hljs-number">10</span> <span class="hljs-keyword">true</span><br>execute as <span class="hljs-meta">@s</span> at <span class="hljs-meta">@s</span> run scoreboard players remove <span class="hljs-meta">@s</span> upboots-sneak <span class="hljs-number">1</span><br>execute as <span class="hljs-meta">@s</span>[scores=&#123;upboots-sneak=<span class="hljs-number">1</span>..&#125;] at <span class="hljs-meta">@s</span> run function upboots:jump<br><br>execute as <span class="hljs-meta">@a</span>[scores=&#123;upboots-sneak=<span class="hljs-number">0</span>&#125;,tag=!fireball] at <span class="hljs-meta">@s</span> run summon fireball ~ ~<span class="hljs-number">0.3</span> ~ &#123;Motion:[<span class="hljs-number">0.0</span>d,-<span class="hljs-number">1.2</span>d,<span class="hljs-number">0.0</span>d],NoGravity:<span class="hljs-number">1</span>b,Invulnerable:<span class="hljs-number">1</span>b,ExplosionPower:-<span class="hljs-number">1</span>,direction:[<span class="hljs-number">0.0</span>d,-<span class="hljs-number">1.2</span>d,<span class="hljs-number">0.0</span>d]&#125;<br>execute as <span class="hljs-meta">@a</span>[scores=&#123;upboots-sneak=<span class="hljs-number">0</span>&#125;] at <span class="hljs-meta">@s</span> run tag <span class="hljs-meta">@s</span> add fireball<br></code></pre></td></tr></table></figure>
@@ -44,7 +47,10 @@
     <content><![CDATA[<p><img src="https://ae01.alicdn.com/kf/H15a48e639d40485e8d2f66a61d7d859cT.jpg" alt="cover"><br>该数据包允许玩家较为容易的创建一个自定义的箱子菜单。<br>并且可以自定义点击物品执行命令。</p>
 <a id="more"></a>
 
-<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：<br><a href="https://www.bilibili.com/video/BV1qT4y1G79T" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1qT4y1G79T</a></p>
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：</p>
+<iframe src="//player.bilibili.com/player.html?aid=925266260&bvid=BV1qT4y1G79T&cid=180007446&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px"> </iframe>
+
+<p><a href="https://www.bilibili.com/video/BV1qT4y1G79T" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1qT4y1G79T</a></p>
 <p><img src="https://img.rruu.net/image/5eb0e47745d0f" alt="演示1"></p>
 <p><img src="https://img.rruu.net/image/5eb0e4684c5f4" alt="演示2"></p>
 <p>使用</p>
@@ -153,7 +159,10 @@
     <content><![CDATA[<p>该数据包允许玩家使用新增物品：搬箱器，来较为容易的搬运箱子。<br>该数据包隶属于 <em>cAsual woRk</em> (2/99)</p>
 <a id="more"></a>
 
-<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示:<br><a href="https://www.bilibili.com/video/BV1xE411P7UL" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411P7UL</a></p>
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示:</p>
+<iframe src="//player.bilibili.com/player.html?aid=97530658&bvid=BV1xE411P7UL&cid=166502887&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px"> </iframe>
+
+<p><a href="https://www.bilibili.com/video/BV1xE411P7UL" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411P7UL</a></p>
 <p><img src="https://img.rruu.net/image/5eb0e46b2c89a" alt="演示1"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>判断玩家手持特殊胡萝卜杆，然后右键时视线追踪</p>
 <figure class="highlight"><table><tr><td class="code"><pre><code class="hljs java">execute if entity @s[distance=..7] if block ~ ~ ~ #carry:chest run summon minecraft:armor_stand ~ ~ ~ &#123;Tags:["carry-maker"],Invisible:1b,Marker:1b,NoGravity:1b&#125;<br>execute if entity @s[distance=..7] unless block ~ ~ ~ #carry:chest positioned ^ ^ ^0.005 run function carry:ray1<br></code></pre></td></tr></table></figure>
@@ -180,7 +189,9 @@
     <content><![CDATA[<p>该数据包使得玩家放置的玩家头颅能够以悬浮字形式在上方显示其用户ID，并支持使用彩色羊毛对其染色。<br>该数据包隶属于 <em>cAsual woRk</em> (1/99)</p>
 <a id="more"></a>
 
-<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：<br><a href="https://www.bilibili.com/video/BV1xE411p7FW" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411p7FW</a></p>
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：</p>
+<iframe src="//player.bilibili.com/player.html?aid=94257392&bvid=BV1xE411p7FW&cid=160918321&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px;"></iframe>
+
 <p><img src="https://img.rruu.net/image/5eb0e47894feb" alt="演示1"></p>
 <p><img src="https://img.rruu.net/image/5eb0e47b2b623" alt="演示2"></p>
 <p><img src="https://img.rruu.net/image/5eb0e46f1cba1" alt="演示3"></p>
