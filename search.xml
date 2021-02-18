@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>[1.15.2]Minecraft数据包---蓄力靴</title>
+    <url>/2020/08/07/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E8%93%84%E5%8A%9B%E9%9D%B4/</url>
+    <content><![CDATA[<p>该数据包增加了物品：蓄力靴，能够让玩家通过潜行蓄力高跳</p>
+<a id="more"></a>
+
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：</p>
+<iframe src="//player.bilibili.com/player.html?aid=286570755&bvid=BV19f4y1X7zP&cid=218865023&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px"> </iframe>
+
+<p><a href="https://www.bilibili.com/video/BV19f4y1X7zP" target="_blank" rel="noopener">https://www.bilibili.com/video/BV19f4y1X7zP</a></p>
+<p><img src="https://p.pstatp.com/origin/100110000f7c7cb70b06f" alt="演示1"></p>
+<h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>玩家蓄力，记分板加分，然后递归刷slime，最后刷个火球<br><del>slime的挤压效果比较弱的，所以递归刷很多才能比较明显的体现，但是火球的效果非常的大，所以只是在最后刷了一个，即便如此，还是飞得很高。</del></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">execute as <span class="hljs-meta">@s</span> at <span class="hljs-meta">@s</span> anchored feet positioned ^ ^ ^-<span class="hljs-number">0.3</span> run summon slime ~ ~-<span class="hljs-number">0.3</span> ~ &#123;Invulnerable:<span class="hljs-number">1</span>b,NoAI:<span class="hljs-number">1</span>b,Size:<span class="hljs-number">4</span>,Tags:[<span class="hljs-string">"boost-marker"</span>],ActiveEffects:[&#123;Id:<span class="hljs-number">14</span>,Amplifier:<span class="hljs-number">1</span>b,Duration:<span class="hljs-number">9999</span>,ShowParticles:<span class="hljs-keyword">false</span>&#125;]&#125;<br>effect give <span class="hljs-meta">@e</span>[type=slime,tag=boost-marker] resistance <span class="hljs-number">9999</span> <span class="hljs-number">10</span> <span class="hljs-keyword">true</span><br>effect give <span class="hljs-meta">@e</span>[type=slime,tag=boost-marker] invisibility <span class="hljs-number">9999</span> <span class="hljs-number">10</span> <span class="hljs-keyword">true</span><br>execute as <span class="hljs-meta">@s</span> at <span class="hljs-meta">@s</span> run scoreboard players remove <span class="hljs-meta">@s</span> upboots-sneak <span class="hljs-number">1</span><br>execute as <span class="hljs-meta">@s</span>[scores=&#123;upboots-sneak=<span class="hljs-number">1</span>..&#125;] at <span class="hljs-meta">@s</span> run function upboots:jump<br><br>execute as <span class="hljs-meta">@a</span>[scores=&#123;upboots-sneak=<span class="hljs-number">0</span>&#125;,tag=!fireball] at <span class="hljs-meta">@s</span> run summon fireball ~ ~<span class="hljs-number">0.3</span> ~ &#123;Motion:[<span class="hljs-number">0.0</span>d,-<span class="hljs-number">1.2</span>d,<span class="hljs-number">0.0</span>d],NoGravity:<span class="hljs-number">1</span>b,Invulnerable:<span class="hljs-number">1</span>b,ExplosionPower:-<span class="hljs-number">1</span>,direction:[<span class="hljs-number">0.0</span>d,-<span class="hljs-number">1.2</span>d,<span class="hljs-number">0.0</span>d]&#125;<br>execute as <span class="hljs-meta">@a</span>[scores=&#123;upboots-sneak=<span class="hljs-number">0</span>&#125;] at <span class="hljs-meta">@s</span> run tag <span class="hljs-meta">@s</span> add fireball<br></code></pre></td></tr></table></figure>
+
+<p><del>火球的 <em>ExplosionPower</em> 标签决定了它的爆炸威力，只能设置为整数，数值越大效果越强，但是如果为负值，就会威力很小，但是有很强的击退效果，这个datapack正是利用了这一点。不过这东西不稳定而且也不好控制，所以局限性还是挺大的。</del></p>
+<p>然后就没了，剩下一点后续的处理和一些actionbar的提示之类的。毕竟做的也很粗糙。<br>这个小玩意我写了两个版本，因为第一个版本实在不太行，基本没有竖直的高度变化，只能平地前进，令人很不爽。不过用了火球黑科技之后效果就好多了，这也就是这个datapack的核心之处。</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
+<li>dhp真好用</li>
+<li>很早之前某帖子给我的灵感，火球黑科技真是太棒了</li>
+</ul>
+<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接：<a href="https://pan.baidu.com/s/1L3PkoDUZv_UH18rBxK_VsQ" target="_blank" rel="noopener">https://pan.baidu.com/s/1L3PkoDUZv_UH18rBxK_VsQ</a><br>提取码：dp31</p>
+]]></content>
+      <tags>
+        <tag>commands</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>换个图床</title>
+    <url>/2020/04/28/%E6%8D%A2%E4%B8%AA%E5%9B%BE%E5%BA%8A/</url>
+    <content><![CDATA[<p>之前是用七牛的云储存的当图床的，速度倒是很快，不过前段时间到期了<br>然后我才发现七牛的域名每半个月回收一次，这就很烦了，总不能半个月重新改一遍链接吧<br>然后又不想放在本地，github的加载速度不慢却也不能说快，所以改成图床了。</p>
+<a id="more"></a>
+
+<p>至于图床的选择，最开始是打算用<em>sm.ms</em>的，但是据说由于滥用，速度慢了点。<br>而且当时去看的时候，主页加载半天没加载出来，所以放弃。</p>
+<p>在网上搜了搜，最后选定了路过图床<em>imgchr.com</em><br>注册了个账号，放了几张图上去，速度测试还可以。<br><del>虽然说一开始由于自己使用方法的错误，一度以为图床加载速度很慢</del><br>虽然说每次更新文章都要手动传图片，加链接，不过毕竟我这更新速度也慢，图片也少，所以问题还是不大的XD</p>
+<hr>
+<p>2020.5.5 更新<br>头图的加载速度还是不能让我满意，所以去找了一下其他的图床<br>然后发现了一个新开的图床<em>img.rruu.net</em><br>速度还不错，而且支持Picgo，所以又把图片全转过去了，之后有空再处理一下Picgo的对接，就不会再改动了。</p>
+]]></content>
+      <tags>
+        <tag>strange</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[1.15.2]Minecraft数据包---原版箱子菜单</title>
+    <url>/2020/04/24/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E5%8E%9F%E7%89%88%E7%AE%B1%E5%AD%90%E8%8F%9C%E5%8D%95/</url>
+    <content><![CDATA[<p><img src="https://ae01.alicdn.com/kf/H15a48e639d40485e8d2f66a61d7d859cT.jpg" alt="cover"><br>该数据包允许玩家较为容易的创建一个自定义的箱子菜单。<br>并且可以自定义点击物品执行命令。</p>
+<a id="more"></a>
+
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：</p>
+<iframe src="//player.bilibili.com/player.html?aid=925266260&bvid=BV1qT4y1G79T&cid=180007446&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px"> </iframe>
+
+<p><a href="https://www.bilibili.com/video/BV1qT4y1G79T" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1qT4y1G79T</a></p>
+<p><img src="https://img.rruu.net/image/5eb0e47745d0f" alt="演示1"></p>
+<p><img src="https://img.rruu.net/image/5eb0e4684c5f4" alt="演示2"></p>
+<p>使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">/function chestmenu:on<br>/function chestmenu:off<br></code></pre></td></tr></table></figure>
+
+<p>来开/关系统，在系统关闭情况下，无法使用箱子菜单</p>
+<p>使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">/function chestmenu:store_chest<br>/function chestmenu:store_minecart<br></code></pre></td></tr></table></figure>
+
+<p>来创建箱子菜单/箱子矿车菜单，可自定义其中物品，摆出一个对称的菜单界面 :D</p>
+<p>然后通过</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">/function chestmenu:upload<br></code></pre></td></tr></table></figure>
+
+<p>上传箱子菜单</p>
+<p>使用</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">/function chestmenu:export_chest<br>/function chestmenu:export_minecart<br></code></pre></td></tr></table></figure>
+
+<p>来创建箱子菜单/矿车菜单</p>
+<p>然后开发者可以在<br><em>datapacks\chestmenu\data\chestmenu\functions\main</em><br>修改对应物品格对应的命令<br><del>就是那两块无聊的穷举啦</del></p>
+<h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>首先生成储存物品的箱子/箱子矿车，玩家摆好物品后使用命令将Items标签上传至天上的箱子矿车存起来<br>Items标签会加上不同tag存两份，以便于后续进行比对</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">#chestmenu:upload<br><br>#储存-箱子<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-store,limit=<span class="hljs-number">1</span>] at <span class="hljs-meta">@s</span> run data modify block ~ ~ ~ Items.[] merge value &#123;tag:&#123;id:<span class="hljs-string">"cm-tag1"</span>&#125;&#125;<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-store,limit=<span class="hljs-number">1</span>] at <span class="hljs-meta">@s</span> run data modify entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-tag1,limit=<span class="hljs-number">1</span>] Items set from block ~ ~ ~ Items<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-store,limit=<span class="hljs-number">1</span>] at <span class="hljs-meta">@s</span> run data remove block ~ ~ ~ Item.[].tag.id<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-store,limit=<span class="hljs-number">1</span>] at <span class="hljs-meta">@s</span> run data modify block ~ ~ ~ Items.[] merge value &#123;tag:&#123;id:<span class="hljs-string">"cm-item"</span>&#125;&#125;<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-store,limit=<span class="hljs-number">1</span>] at <span class="hljs-meta">@s</span> run data modify entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-tag2,limit=<span class="hljs-number">1</span>] Items set from block ~ ~ ~ Items<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-store,limit=<span class="hljs-number">1</span>] at <span class="hljs-meta">@s</span> run setblock ~ ~ ~ air replace<br><br>#矿车<br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-store,limit=<span class="hljs-number">1</span>] at <span class="hljs-meta">@s</span> run data modify entity <span class="hljs-meta">@s</span> Items.[] merge value &#123;tag:&#123;id:<span class="hljs-string">"cm-tag1"</span>&#125;&#125;<br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-store,limit=<span class="hljs-number">1</span>] at <span class="hljs-meta">@s</span> run data modify entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-tag3,limit=<span class="hljs-number">1</span>] Items set from entity <span class="hljs-meta">@s</span> Items<br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-store,limit=<span class="hljs-number">1</span>] at <span class="hljs-meta">@s</span> run data remove entity <span class="hljs-meta">@s</span> Item.[].tag.id<br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-store,limit=<span class="hljs-number">1</span>] at <span class="hljs-meta">@s</span> run data modify entity <span class="hljs-meta">@s</span> Items.[] merge value &#123;tag:&#123;id:<span class="hljs-string">"cm-item"</span>&#125;&#125;<br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-store,limit=<span class="hljs-number">1</span>] at <span class="hljs-meta">@s</span> run data modify entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-tag4,limit=<span class="hljs-number">1</span>] Items set from entity <span class="hljs-meta">@s</span> Items<br>tellraw <span class="hljs-meta">@s</span> [<span class="hljs-string">""</span>,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"=上传成功="</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"red"</span>,<span class="hljs-string">"bold"</span>:<span class="hljs-keyword">true</span>&#125;]<br>kill <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-store]<br></code></pre></td></tr></table></figure>
+
+<p>然后玩家创建菜单，将菜单中的物品高频覆盖原来模板中的物品<br>如果菜单物品与模板物品一致，那么检测不到模板物品<br>如果玩家拿走某物品，那么即可检测到对应的模板物品，然后获取slot转成分数执行一遍命令<br>最后把模板物品覆盖到菜单里，恢复原样<br>(思路由雨弓提供XD)</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">#chestmenu:main<br><br>#aec,导出与对比<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-export] at <span class="hljs-meta">@s</span> run data modify entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-compare,limit=<span class="hljs-number">1</span>] Items set from entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-tag1,limit=<span class="hljs-number">1</span>] Items<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-export] at <span class="hljs-meta">@s</span> run data modify entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-compare,limit=<span class="hljs-number">1</span>] Items append from block ~ ~ ~ Items.[]<br><br>#minecart,导出与对比<br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-export] at <span class="hljs-meta">@s</span> run data modify entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-compare2,limit=<span class="hljs-number">1</span>] Items set from entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-tag3,limit=<span class="hljs-number">1</span>] Items<br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-export] at <span class="hljs-meta">@s</span> run data modify entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-compare2,limit=<span class="hljs-number">1</span>] Items append from entity <span class="hljs-meta">@s</span> Items.[]<br></code></pre></td></tr></table></figure>
+
+<p>如果系统关闭后，maker被删掉，箱子菜单无法使用，会出现提示内容</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-export] at <span class="hljs-meta">@s</span> run data modify block ~ ~ ~ Items set from entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-tag2,limit=<span class="hljs-number">1</span>] Items<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-export] at <span class="hljs-meta">@s</span> unless entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-compare] run tellraw <span class="hljs-meta">@p</span> [<span class="hljs-string">""</span>,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"哦吼，ChestMenu系统好像坏掉勒\n"</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"gold"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"请使用 "</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"gold"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"/function chestmenu:on "</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"red"</span>,<span class="hljs-string">"blod"</span>:<span class="hljs-keyword">true</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"以重置系统"</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"gold"</span>&#125;]<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=cm-export] at <span class="hljs-meta">@s</span> unless entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-compare] run fill ~ ~ ~ ~ ~ ~ air replace minecraft:chest<br><br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-export] at <span class="hljs-meta">@s</span> run data modify entity <span class="hljs-meta">@s</span> Items set from entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-tag4,limit=<span class="hljs-number">1</span>] Items<br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-export] at <span class="hljs-meta">@s</span> unless entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-compare2] run tellraw <span class="hljs-meta">@p</span> [<span class="hljs-string">""</span>,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"哦吼，ChestMenu系统好像坏掉勒\n"</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"gold"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"请使用 "</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"gold"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"/function chestmenu:on "</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"red"</span>,<span class="hljs-string">"blod"</span>:<span class="hljs-keyword">true</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"以重置系统"</span>,<span class="hljs-string">"color"</span>:<span class="hljs-string">"gold"</span>&#125;]<br>execute as <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-export] at <span class="hljs-meta">@s</span> unless entity <span class="hljs-meta">@e</span>[type=chest_minecart,tag=cm-compare2] run tp <span class="hljs-meta">@s</span> ~ ~-<span class="hljs-number">1210</span> ~<br></code></pre></td></tr></table></figure>
+
+<p>现在可以手持特定nbt物品<em>{id:”minecartmenu”}</em>打开菜单了<br>通过断言判断玩家手持特定的物品，然后在直接玩家脸上糊个箱子矿车</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"condition"</span>:<span class="hljs-string">"minecraft:entity_properties"</span>,<br>    <span class="hljs-attr">"entity"</span>: <span class="hljs-string">"this"</span>,<br>    <span class="hljs-attr">"predicate"</span>: &#123;<br>        <span class="hljs-attr">"equipment"</span>:&#123;<br>            <span class="hljs-attr">"mainhand"</span>:&#123;<br>                <span class="hljs-attr">"nbt"</span>: <span class="hljs-string">"&#123;id:\"minecartmenu\"&#125;"</span><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>还在持续更新，自己也有一些其他的想法想尝试实现，不过自己大概是没时间了。</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
+<li><p>雨弓，提供了核心思路</p>
+</li>
+<li><p>spg，dhp真好用</p>
+</li>
+<li><p>⊙v⊙，UIN标签</p>
+</li>
+<li><p>特仑苏牛奶</p>
+</li>
+</ul>
+<h2 id="更新列表"><a href="#更新列表" class="headerlink" title="更新列表"></a>更新列表</h2><ul>
+<li>v1.0:<br>发布</li>
+<li>v1.1:<br>修复了生成菜单时执行奇怪指令的BUG<br>更改了矿车菜单的生成方式，现在可以手持特定nbt物品打开菜单了</li>
+<li>v1.2:<br>优化体验，增加关闭ui的预设函数，可直接调用</li>
+</ul>
+<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接：<a href="https://pan.baidu.com/s/1CSeJp3EH6_oOAo9VJE6VXA/" target="_blank" rel="noopener">https://pan.baidu.com/s/1CSeJp3EH6_oOAo9VJE6VXA/</a><br>提取码：96m5</p>
+]]></content>
+      <tags>
+        <tag>commands</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>同步blog到gitee</title>
+    <url>/2020/04/09/%E5%90%8C%E6%AD%A5blog%E5%88%B0gitee/</url>
+    <content><![CDATA[<p>其实github速度还算可以（也有可能是缓存的原因），不过我还是去看了下gitee。<br>gitee毕竟还是在国内，速度肯定要比github快很多，而且仓库导入做得也不错，所以就同步一个吧。<br>post还是在本地写完上传github，然后在gitee那里复制仓库内容导过去，不算方便，但也可接受。<br>（有空再捣鼓一下直接传到gitee，应该不会太费劲，但那是后话了）</p>
+<a id="more"></a>
+
+<p>弄好之后试了一下，两边速度基本看不出太大差异，不过一些插件还是gitee那边快不少。<br>内部页面的加载速度也是gitee更胜一筹。</p>
+<p><img src="https://img.rruu.net/image/5eb0e47a18472" alt="gitee更胜一筹"></p>
+<p><img src="https://img.rruu.net/image/5eb0e47c6d42f" alt="github加载略慢"></p>
+<p>两边的内容都是一样的（除非我忘了更新gitee），所以可以优先去访问gitee.io，毕竟还是快一点。</p>
+]]></content>
+      <tags>
+        <tag>strange</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>尝试做一张cover</title>
+    <url>/2020/04/02/%E5%B0%9D%E8%AF%95%E5%81%9A%E4%B8%80%E5%BC%A0cover/</url>
+    <content><![CDATA[<p>最近呢，想要自定义一下首页的cover。毕竟这是个Minecraft的站点，所以想要以Minecraft为题材做这么一张图片。<br>原图其实还蛮好看的，不过对比度似乎高了点，不太符合整体风格。所以我想用双色调风格，颜色也要偏向白/灰/黑之类的。<br>再加上我是个CBer（？），所以要和命令元素相关，画面中最好有一些技术性内容。<br>那么一番构（luan）思（xiang）之后，有了以下方案：</p>
+<a id="more"></a>
+
+<p>最初想放个命令方块在中间，周围放上各种奇怪的生物/物品，但是考虑到最后要做双色调，颜色可能会失去不少。而且我不太会布局，所以作罢。</p>
+<p>后来又想搭个小场景，画了十分钟建了一个，怎么看怎么丑，作罢。</p>
+<p>又想用c4d，mi之类的渲染一张，但是水平有限，作罢。</p>
+<p>所以最后还是选了第一种方案，只不过把各种奇怪生物全删掉了，留了一只creeper，最后出来的效果其实还不错，调色感觉也比较符合整体效果。</p>
+<p><img src="https://img.rruu.net/image/5eb1048c70e64" alt="cover"></p>
+<p>以后会多做几张类似风格的，再做个自动轮换岂不美哉。</p>
+<hr>
+<p>2020.4.10 更新</p>
+<p><img src="https://img.rruu.net/image/5eb1048d68df1" alt="cover"></p>
+<hr>
+<p>2020.4.30 更新</p>
+<p><img src="https://ae01.alicdn.com/kf/He2d4c302323249d787636e16a5caa662M.jpg" alt="cover"></p>
+<p>配色纠结了好久，不过成品我觉得还蛮好看的</p>
+<hr>
+<p>2020.6.25 更新<br><img src="https://ae01.alicdn.com/kf/H56dd2502d2944a5e83f4015e54d4a201r.jpg" alt="cover"></p>
+<p><img src="https://ae01.alicdn.com/kf/H08f21a5c4c2941e08815e4f39f09a1c8B.jpg" alt="cover"></p>
+<p><img src="https://ae01.alicdn.com/kf/Haa438cdb37514b6bb5f2c9415dd67fe2V.jpg" alt="cover"></p>
+<p>端午回来摸个鱼<br>这几张是从一张跑酷地图（Phantom Run 1.0.4）截来的，作者是我们喜闻乐见的iWacky<br>这几张相对于之前的几张来说，元素比较多，色调的比较奇怪，有种咖喱味(?)</p>
+<hr>
+<p>2020.8.11 更新<br><img src="https://ae01.alicdn.com/kf/Uc488ff99fe234d29bb9626d4be32efddF.jpg" alt="cover"></p>
+<p><img src="https://ae01.alicdn.com/kf/U9f6b0a121ce74706985324500bec38988.jpg" alt="cover"></p>
+<p><img src="https://ae01.alicdn.com/kf/U29e86891870745de9294ac2712bddad3F.jpg" alt="cover"></p>
+<p>地狱更新的几张图，感觉不是很满意，因为地狱确实挺暗的，场景也比较复杂，不太好整。<br>看了看还是选了那张最红的当做cover，因为比较符合地狱的风格。</p>
+]]></content>
+      <tags>
+        <tag>strange</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[1.15.2]Minecraft数据包---搬箱器</title>
+    <url>/2020/03/28/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E6%90%AC%E7%AE%B1%E5%99%A8/</url>
+    <content><![CDATA[<p>该数据包允许玩家使用新增物品：搬箱器，来较为容易的搬运箱子。<br>该数据包隶属于 <em>cAsual woRk</em> (2/99)</p>
+<a id="more"></a>
+
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示:</p>
+<iframe src="//player.bilibili.com/player.html?aid=97530658&bvid=BV1xE411P7UL&cid=166502887&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px"> </iframe>
+
+<p><a href="https://www.bilibili.com/video/BV1xE411P7UL" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411P7UL</a></p>
+<p><img src="https://img.rruu.net/image/5eb0e46b2c89a" alt="演示1"></p>
+<h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>判断玩家手持特殊胡萝卜杆，然后右键时视线追踪</p>
+<figure class="highlight"><table><tr><td class="code"><pre><code class="hljs java">execute if entity @s[distance=..7] if block ~ ~ ~ #carry:chest run summon minecraft:armor_stand ~ ~ ~ &#123;Tags:["carry-maker"],Invisible:1b,Marker:1b,NoGravity:1b&#125;<br>execute if entity @s[distance=..7] unless block ~ ~ ~ #carry:chest positioned ^ ^ ^0.005 run function carry:ray1<br></code></pre></td></tr></table></figure>
+
+<p>判断为箱子（包括陷阱箱）则在此处生成maker，然后将箱子的Items标签存进storage</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">execute as <span class="hljs-meta">@e</span>[type=armor_stand,tag=carry-maker] at <span class="hljs-meta">@s</span> run data modify storage carry Items set from block ~ ~ ~ Items<br></code></pre></td></tr></table></figure>
+
+<p>清除箱子，并在最近玩家处生成箱子物品（偷懒了，这里的判断并不准确），将storage里标签再转回去</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">execute as <span class="hljs-meta">@e</span>[type=armor_stand,tag=carry-maker] at <span class="hljs-meta">@p</span>[scores=&#123;carry-used=<span class="hljs-number">1</span>&#125;] run summon item ~ ~<span class="hljs-number">1</span> ~ &#123;Tags:[<span class="hljs-string">"carry"</span>],Item:&#123;id:<span class="hljs-string">"minecraft:chest"</span>,Count:<span class="hljs-number">1</span>b&#125;&#125;<br>execute as <span class="hljs-meta">@e</span>[type=item,tag=carry,nbt=&#123;Item:&#123;id:<span class="hljs-string">"minecraft:chest"</span>&#125;&#125;] run data modify entity <span class="hljs-meta">@s</span> Item.tag.BlockEntityTag.Items set from storage carry Items<br>execute as <span class="hljs-meta">@e</span>[type=item,tag=carry,nbt=&#123;Item:&#123;id:<span class="hljs-string">"minecraft:chest"</span>&#125;&#125;] run data merge entity <span class="hljs-meta">@s</span> &#123;PickupDelay:<span class="hljs-number">0</span>s&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这个包总体来说挺简陋的，钓竿没做合成，没画材质，没做耐久（<br>可能有空会更新吧。<del>但是估计永远不会再重写了</del></p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
+<li>dhp真好用</li>
+</ul>
+<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接：<a href="https://pan.baidu.com/s/1rVrsTMCo51jQzVNPJfv4fA" target="_blank" rel="noopener">https://pan.baidu.com/s/1rVrsTMCo51jQzVNPJfv4fA</a><br>提取码：193g</p>
+]]></content>
+      <tags>
+        <tag>commands</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[1.15.2]Minecraft数据包---玩家头颅ID显示</title>
+    <url>/2020/03/27/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E7%8E%A9%E5%AE%B6%E5%A4%B4%E9%A2%85ID%E6%98%BE%E7%A4%BA/</url>
+    <content><![CDATA[<p>该数据包使得玩家放置的玩家头颅能够以悬浮字形式在上方显示其用户ID，并支持使用彩色羊毛对其染色。<br>该数据包隶属于 <em>cAsual woRk</em> (1/99)</p>
+<a id="more"></a>
+
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：</p>
+<iframe src="//player.bilibili.com/player.html?aid=94257392&bvid=BV1xE411p7FW&cid=160918321&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px;"></iframe>
+
+<p><img src="https://img.rruu.net/image/5eb0e47894feb" alt="演示1"></p>
+<p><img src="https://img.rruu.net/image/5eb0e47b2b623" alt="演示2"></p>
+<p><img src="https://img.rruu.net/image/5eb0e46f1cba1" alt="演示3"></p>
+<h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>首先是通过进度判断玩家放下头颅，要注意的是头颅放在地上和墙上的id不同，当时我就被这个坑了好久（</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"criteria"</span>: &#123;<br>        <span class="hljs-attr">"put_head"</span>: &#123;<br>            <span class="hljs-attr">"trigger"</span>: <span class="hljs-string">"minecraft:placed_block"</span>,<br>            <span class="hljs-attr">"conditions"</span>: &#123;<br>                <span class="hljs-attr">"block"</span>: <span class="hljs-string">"minecraft:player_head"</span><br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">"rewards"</span>: &#123;<br>        <span class="hljs-attr">"function"</span>: <span class="hljs-string">"skull:reset"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"criteria"</span>: &#123;<br>        <span class="hljs-attr">"put_head"</span>: &#123;<br>            <span class="hljs-attr">"trigger"</span>: <span class="hljs-string">"minecraft:placed_block"</span>,<br>            <span class="hljs-attr">"conditions"</span>: &#123;<br>                <span class="hljs-attr">"block"</span>: <span class="hljs-string">"minecraft:player_wall_head"</span><br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">"rewards"</span>: &#123;<br>        <span class="hljs-attr">"function"</span>: <span class="hljs-string">"skull:reset"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>然后通过视线追踪在头颅位置生成maker，并对齐方块中央。</p>
+<figure class="highlight"><table><tr><td class="code"><pre><code class="hljs java">execute if entity @s[distance=..6] if block ~ ~ ~ #player_head positioned ^ ^ ^ run summon armor_stand ~ ~ ~ &#123;Invisible:1b,Invulnerable:1b,Marker:1b,Tags:["skull-name"],Small:1b&#125;<br>execute if entity @s[distance=..6] unless block ~ ~ ~ #player_head positioned ^ ^ ^0.005 run function skull:ray<br></code></pre></td></tr></table></figure>
+
+<p>然后通过牌子获取到头颅的用户ID，使用<em>interpret</em>拍扁</p>
+<figure class="highlight"><table><tr><td class="code"><pre><code class="hljs java">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run setblock ~ ~2 ~ minecraft:oak_sign&#123;Text1:"&#123;\"block\":\"~ ~-2 ~\",\"nbt\":\"Owner.Name\",\"interpret\":false&#125;",Text2:"&#123;\"text\":\"\"&#125;",Text3:"&#123;\"text\":\"\"&#125;",Text4:"&#123;\"text\":\"\"&#125;"&#125;<br>execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run data modify entity @s CustomName set from block ~ ~2 ~ Text1<br></code></pre></td></tr></table></figure>
+
+<p>最后是羊毛染色的相关处理，偷懒直接改了队伍color。</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
+<li>黑洞群的bcb大佬和黑猫大佬提供技术支持</li>
+<li>kc提供了他的头（？）</li>
+<li>dhp真好用</li>
+</ul>
+<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接：<a href="https://pan.baidu.com/s/1EvwPPwuBLD-FEjmrnktelA" target="_blank" rel="noopener">https://pan.baidu.com/s/1EvwPPwuBLD-FEjmrnktelA</a><br>提取码：t9qq</p>
+]]></content>
+      <tags>
+        <tag>commands</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World Again</title>
+    <url>/2020/03/27/Hello-World-Again/</url>
+    <content><![CDATA[<p>探索好久，终于是有了些眉目，用hexo生成静态页面之后速度果然快了很多。<br>虽然有比较完整的教程吧，但是自己实践的时候还是遇到各种奇怪的问题，不断尝试最终也还是成功了啊XD<br>那么这个网站就是Ar的Minecraft<del>水贴</del>站了，平时水点原版模组就扔上来好了。<br>再一次，你好，世界。</p>
+<p><del>另外得去学学markdown语法</del></p>
+]]></content>
+      <tags>
+        <tag>strange</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/03/27/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<a id="more"></a>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo new <span class="hljs-string">"My New Post"</span><br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo server<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo generate<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><code class="hljs bash">$ hexo deploy<br></code></pre></td></tr></table></figure>
+
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>strange</tag>
+      </tags>
+  </entry>
+</search>
