@@ -7,7 +7,7 @@
 <a id="more"></a>
 
 <h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：</p>
-<iframe src="//player.bilibili.com/player.html?aid=544306168&bvid=BV1ji4y1T7ry&cid=301628704&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true"> </iframe>
+<iframe src="//player.bilibili.com/player.html?aid=544306168&bvid=BV1ji4y1T7ry&cid=301628704&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px"> </iframe>
 
 <p><a href="https://www.bilibili.com/video/bv1ji4y1T7ry" target="_blank" rel="noopener">https://www.bilibili.com/video/bv1ji4y1T7ry</a></p>
 <p><img src="https://ae01.alicdn.com/kf/Ufb36207a36104a7aa5613b7e040e7a39A.jpg" alt="演示1"></p>
