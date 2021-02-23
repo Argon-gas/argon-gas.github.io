@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="description" content="Commands &amp; Something Strange" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    [1.16.5]Minecraft数据包-装备耐久可视化 |  Argon_gas&#39; Minecraft Site
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/AR.ico" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-1-16-5-Minecraft数据包-装备耐久可视化"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  [1.16.5]Minecraft数据包-装备耐久可视化
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2021/02/23/1-16-5-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E8%A3%85%E5%A4%87%E8%80%90%E4%B9%85%E5%8F%AF%E8%A7%86%E5%8C%96/" class="article-date">
+  <time datetime="2021-02-23T03:07:30.000Z" itemprop="datePublished">2021-02-23</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> Word count:</span>
+            <span class="post-count">1.5k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> Reading time≈</span>
+            <span class="post-count">8 min</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <p><img src="https://ae01.alicdn.com/kf/U717753c72aa54169955500326cee9dd19.jpg" alt="cover"><br>该数据包及配套资源包允许玩家在游戏界面上能直接看到装备以及耐久度的情况。<br>该数据包隶属于 <em>cAsual woRk</em> (/99)</p>
+<a id="more"></a>
+
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：</p>
+<p>&lt;&gt;</p>
+<p>&lt;&gt;</p>
+<p><img src="https://ae01.alicdn.com/kf/Ufb36207a36104a7aa5613b7e040e7a39A.jpg" alt="演示1"></p>
+<h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>通过字体黑科技在actionbar显示图片，反向空格调整到适合位置。<br>然后生成4个药水云，分别检测玩家的4个装备槽位，并且更改药水云的名字</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs java"># eqv:main<br>execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> unless entity <span class="hljs-meta">@s</span>[predicate=eqv:helmet] run data merge entity <span class="hljs-meta">@e</span>[type=area_effect_cloud,limit=<span class="hljs-number">1</span>,tag=eqv-helmet,distance=..<span class="hljs-number">1</span>] &#123;CustomName:<span class="hljs-string">'&#123;"text": "\\ue103"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@s</span> Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:leather_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run data merge entity <span class="hljs-meta">@e</span>[type=area_effect_cloud,limit=<span class="hljs-number">1</span>,tag=eqv-helmet,distance=..<span class="hljs-number">1</span>] &#123;CustomName:<span class="hljs-string">'&#123;"text": "\\ue120"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@s</span> Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:chainmail_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run data merge entity <span class="hljs-meta">@e</span>[type=area_effect_cloud,limit=<span class="hljs-number">1</span>,tag=eqv-helmet,distance=..<span class="hljs-number">1</span>] &#123;CustomName:<span class="hljs-string">'&#123;"text": "\\ue10A"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@s</span> Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:golden_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run data merge entity <span class="hljs-meta">@e</span>[type=area_effect_cloud,limit=<span class="hljs-number">1</span>,tag=eqv-helmet,distance=..<span class="hljs-number">1</span>] &#123;CustomName:<span class="hljs-string">'&#123;"text": "\\ue10F"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@s</span> Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:iron_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run data merge entity <span class="hljs-meta">@e</span>[type=area_effect_cloud,limit=<span class="hljs-number">1</span>,tag=eqv-helmet,distance=..<span class="hljs-number">1</span>] &#123;CustomName:<span class="hljs-string">'&#123;"text": "\\ue113"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@s</span> Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:diamond_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run data merge entity <span class="hljs-meta">@e</span>[type=area_effect_cloud,limit=<span class="hljs-number">1</span>,tag=eqv-helmet,distance=..<span class="hljs-number">1</span>] &#123;CustomName:<span class="hljs-string">'&#123;"text": "\\ue117"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@s</span> Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:netherite_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run data merge entity <span class="hljs-meta">@e</span>[type=area_effect_cloud,limit=<span class="hljs-number">1</span>,tag=eqv-helmet,distance=..<span class="hljs-number">1</span>] &#123;CustomName:<span class="hljs-string">'&#123;"text": "\\ue11B"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@s</span> Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:turtle_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run data merge entity <span class="hljs-meta">@e</span>[type=area_effect_cloud,limit=<span class="hljs-number">1</span>,tag=eqv-helmet,distance=..<span class="hljs-number">1</span>] &#123;CustomName:<span class="hljs-string">'&#123;"text": "\\ue11C"&#125;'</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>值得注意的是，由于头上可以戴很多奇怪的东西，所以写个断言来处理所有无效物品的情况。<br>然后再生成4个药水云，用于显示装备耐久条。<br>令药水云分别把对应装备的Damage存到计分板，然后就是简单粗暴的穷举（ ,判断装备然后对应比较现在的Damage位于哪个区间并显示耐久条</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs java"># eqv:main<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=eqv-h-d] at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> entity <span class="hljs-meta">@a</span>[distance=..<span class="hljs-number">1</span>,limit=<span class="hljs-number">1</span>,predicate=eqv:helmet] run execute as <span class="hljs-meta">@s</span> store result score <span class="hljs-meta">@s</span> eqv-durability run data get entity <span class="hljs-meta">@a</span>[distance=..<span class="hljs-number">1</span>,limit=<span class="hljs-number">1</span>,predicate=eqv:helmet] Inventory.[&#123;Slot:<span class="hljs-number">103</span>b&#125;].tag.Damage <br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=eqv-h-d] at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@a</span>[limit=<span class="hljs-number">1</span>,distance=..<span class="hljs-number">1</span>] Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:leather_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run function eqv:helmet/leather<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=eqv-h-d] at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@a</span>[limit=<span class="hljs-number">1</span>,distance=..<span class="hljs-number">1</span>] Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:chainmail_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run function eqv:helmet/chainmail<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=eqv-h-d] at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@a</span>[limit=<span class="hljs-number">1</span>,distance=..<span class="hljs-number">1</span>] Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:golden_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run function eqv:helmet/golden<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=eqv-h-d] at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@a</span>[limit=<span class="hljs-number">1</span>,distance=..<span class="hljs-number">1</span>] Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:iron_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run function eqv:helmet/iron<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=eqv-h-d] at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@a</span>[limit=<span class="hljs-number">1</span>,distance=..<span class="hljs-number">1</span>] Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:diamond_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run function eqv:helmet/diamond<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=eqv-h-d] at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@a</span>[limit=<span class="hljs-number">1</span>,distance=..<span class="hljs-number">1</span>] Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:netherite_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run function eqv:helmet/netherite<br>execute as <span class="hljs-meta">@e</span>[type=area_effect_cloud,tag=eqv-h-d] at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> data entity <span class="hljs-meta">@a</span>[limit=<span class="hljs-number">1</span>,distance=..<span class="hljs-number">1</span>] Inventory.[&#123;Slot:<span class="hljs-number">103</span>b,id:<span class="hljs-string">"minecraft:turtle_helmet"</span>,Count:<span class="hljs-number">1</span>b&#125;] run function eqv:helmet/turtle<br><br># eqv:helmet/golden<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">1</span>..<span class="hljs-number">6</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue121"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">7</span>..<span class="hljs-number">11</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue122"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">12</span>..<span class="hljs-number">16</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue123"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">17</span>..<span class="hljs-number">21</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue124"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">22</span>..<span class="hljs-number">27</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue125"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">28</span>..<span class="hljs-number">32</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue126"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">33</span>..<span class="hljs-number">37</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue127"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">38</span>..<span class="hljs-number">42</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue128"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">43</span>..<span class="hljs-number">48</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue129"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">49</span>..<span class="hljs-number">53</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue12A"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">54</span>..<span class="hljs-number">58</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue12B"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">59</span>..<span class="hljs-number">64</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue12C"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">65</span>..<span class="hljs-number">69</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue12D"&#125;'</span>&#125;<br>execute as <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> score <span class="hljs-meta">@s</span> eqv-durability matches <span class="hljs-number">73</span>..<span class="hljs-number">77</span> run data merge entity <span class="hljs-meta">@s</span> &#123;CustomName:<span class="hljs-string">'&#123;"text":"\\ue12E"&#125;'</span>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这种做法是非常naive的方案，不过好就好在非常无脑XD。可能会导致耐久条显示可能和实际有些出入，但是大体上的范围是差不多的。<br>同样的方法操作下来，我们就会得到8个有不同名字的药水云，然后使用title里的<em>selector</em>显示他们的名字，配以反向空格调整位置。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java">execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> run title <span class="hljs-meta">@s</span> actionbar [<span class="hljs-string">""</span>,&#123;<span class="hljs-string">"text"</span>: <span class="hljs-string">"\ue102"</span>&#125;,&#123;<span class="hljs-string">"selector"</span>:<span class="hljs-string">"@e[type=area_effect_cloud,tag=eqv-helmet,distance=..1,limit=1]"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"\ue101"</span>&#125;,&#123;<span class="hljs-string">"selector"</span>:<span class="hljs-string">"@e[type=area_effect_cloud,tag=eqv-h-d,distance=..1,limit=1]"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"  "</span>&#125;,&#123;<span class="hljs-string">"selector"</span>:<span class="hljs-string">"@e[type=area_effect_cloud,tag=eqv-chestplate,distance=..1,limit=1]"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"\ue100"</span>&#125;,&#123;<span class="hljs-string">"selector"</span>:<span class="hljs-string">"@e[type=area_effect_cloud,tag=eqv-c-d,distance=..1,limit=1]"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"  "</span>&#125;,&#123;<span class="hljs-string">"selector"</span>:<span class="hljs-string">"@e[type=area_effect_cloud,tag=eqv-leggings,distance=..1,limit=1]"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"\ue101"</span>&#125;,&#123;<span class="hljs-string">"selector"</span>:<span class="hljs-string">"@e[type=area_effect_cloud,tag=eqv-l-d,distance=..1,limit=1]"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"  "</span>&#125;,&#123;<span class="hljs-string">"selector"</span>:<span class="hljs-string">"@e[type=area_effect_cloud,tag=eqv-boots,distance=..1,limit=1]"</span>&#125;,&#123;<span class="hljs-string">"text"</span>:<span class="hljs-string">"\ue100"</span>&#125;,&#123;<span class="hljs-string">"selector"</span>:<span class="hljs-string">"@e[type=area_effect_cloud,tag=eqv-b-d,distance=..1,limit=1]"</span>&#125;]<br></code></pre></td></tr></table></figure>
+
+<p>当然，由于位置关系是我用眼看着大概写的，所以难免会有点误差，但是我又不是强迫症XD。<br><del>另外，我本来是想通过类似”245 / 562”这样的方式来显示耐久的，但是我一用ttf字体，mc就直接崩溃，作罢。</del></p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
+<li>国外大佬的潜影盒显示黑科技给我的灵感和一些思路</li>
+<li>黑猫的字体艺术教程</li>
+<li>dhp好用</li>
+</ul>
+<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接: <a href="https://pan.baidu.com/s/1e7yhgb4R77ynFKj3P73TiA" target="_blank" rel="noopener">https://pan.baidu.com/s/1e7yhgb4R77ynFKj3P73TiA</a><br>提取码: itaf</p>
+ 
+      <!-- reward -->
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>Copyright： </strong>
+          
+          Copyright is owned by the author. For commercial reprints, please contact the author for authorization. For non-commercial reprints, please indicate the source.
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/commands/" rel="tag">commands</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+    
+      <a href="/2020/08/07/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E8%93%84%E5%8A%9B%E9%9D%B4/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">[1.15.2]Minecraft数据包---蓄力靴</div>
+      </a>
+    
+  </nav>
+
+  
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2020-2021
+        <i class="ri-heart-fill heart_icon"></i> Argon_gas
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        Powered by <a href="https://hexo.io" target="_blank">Hexo</a>
+        <span class="division">|</span>
+        Theme - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/AR.svg" alt="Argon_gas&#39; Minecraft Site"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">Home</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">Archives</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags">Tags</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/commands">Commands</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/strange">Strange</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/about">About</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/automation">Automation</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="Search">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/alipay.jpg">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/img/wechat.jpg">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+    
+  </div>
+</body>
+
+</html>
