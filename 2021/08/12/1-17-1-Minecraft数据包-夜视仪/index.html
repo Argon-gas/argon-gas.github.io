@@ -11,7 +11,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <title>
-    [1.15.2]Minecraft数据包---玩家头颅ID显示 |  Argon_gas&#39; Minecraft Site
+    [1.17.1]Minecraft数据包---夜视仪 |  Argon_gas&#39; Minecraft Site
   </title>
   <meta name="generator" content="hexo-theme-ayer">
   
@@ -46,7 +46,7 @@
     <main class="content on">
       <section class="outer">
   <article
-  id="post-1-15-2-Minecraft数据包-玩家头颅ID显示"
+  id="post-1-17-1-Minecraft数据包-夜视仪"
   class="article article-type-post"
   itemscope
   itemprop="blogPost"
@@ -57,22 +57,22 @@
     <header class="article-header">
        
 <h1 class="article-title sea-center" style="border-left:0" itemprop="name">
-  [1.15.2]Minecraft数据包---玩家头颅ID显示
+  [1.17.1]Minecraft数据包---夜视仪
 </h1>
  
 
     </header>
      
     <div class="article-meta">
-      <a href="/2020/03/27/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E7%8E%A9%E5%AE%B6%E5%A4%B4%E9%A2%85ID%E6%98%BE%E7%A4%BA/" class="article-date">
-  <time datetime="2020-03-27T13:53:10.000Z" itemprop="datePublished">2020-03-27</time>
+      <a href="/2021/08/12/1-17-1-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E5%A4%9C%E8%A7%86%E4%BB%AA/" class="article-date">
+  <time datetime="2021-08-12T15:19:22.000Z" itemprop="datePublished">2021-08-12</time>
 </a>   
 <div class="word_count">
     <span class="post-time">
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> Word count:</span>
-            <span class="post-count">383</span>
+            <span class="post-count">715</span>
         </span>
     </span>
 
@@ -81,7 +81,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> Reading time≈</span>
-            <span class="post-count">1 min</span>
+            <span class="post-count">3 min</span>
         </span>
     </span>
 </div>
@@ -96,33 +96,32 @@
   
     <div class="article-entry" itemprop="articleBody">
        
-  <p>该数据包使得玩家放置的玩家头颅能够以悬浮字形式在上方显示其用户ID，并支持使用彩色羊毛对其染色。<br>该数据包隶属于 <em>cAsual woRk</em> (1/99)</p>
+  <p>另一个着色器实例，尝试做了个夜视仪。<br>但是其实完全没有夜视的效果啊，只是把屏幕变绿了而已XD，但是观感还是不错的，这也得亏深度缓冲。</p>
 <a id="more"></a>
 
 <h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：</p>
-<iframe src="//player.bilibili.com/player.html?aid=94257392&bvid=BV1xE411p7FW&cid=160918321&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px;"></iframe>
+<iframe src="//player.bilibili.com/player.html?aid=759859607&bvid=BV1464y1q7NE&cid=387864669&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px"> </iframe>
 
-<p><img src="https://img.rruu.net/image/5eb0e47894feb" alt="演示1"></p>
-<p><img src="https://img.rruu.net/image/5eb0e47b2b623" alt="演示2"></p>
-<p><img src="https://img.rruu.net/image/5eb0e46f1cba1" alt="演示3"></p>
-<h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>首先是通过进度判断玩家放下头颅，要注意的是头颅放在地上和墙上的id不同，当时我就被这个坑了好久（</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"criteria"</span>: &#123;<br>        <span class="hljs-attr">"put_head"</span>: &#123;<br>            <span class="hljs-attr">"trigger"</span>: <span class="hljs-string">"minecraft:placed_block"</span>,<br>            <span class="hljs-attr">"conditions"</span>: &#123;<br>                <span class="hljs-attr">"block"</span>: <span class="hljs-string">"minecraft:player_head"</span><br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">"rewards"</span>: &#123;<br>        <span class="hljs-attr">"function"</span>: <span class="hljs-string">"skull:reset"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p><a href="https://www.bilibili.com/video/BV1464y1q7NE" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1464y1q7NE</a></p>
+<p><img src="https://i.loli.net/2021/08/12/A6yBuIKCpYWi97m.png" alt="演示1"></p>
+<p><img src="https://i.loli.net/2021/08/12/DsG8LIP26uXUYWF.png" alt="演示2"></p>
+<h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>当玩家戴着一个特殊帽子的时候，在玩家面前生成发光实体，然后调用着色器。<br>帽子的判断使用断言。当玩家戴着特定帽子时，断言通过。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"condition"</span>: <span class="hljs-string">"minecraft:entity_properties"</span>,<br>    <span class="hljs-attr">"entity"</span>: <span class="hljs-string">"this"</span>,<br>    <span class="hljs-attr">"predicate"</span>: &#123;<br>        <span class="hljs-attr">"equipment"</span>: &#123;<br>            <span class="hljs-attr">"head"</span>: &#123;<br>                <span class="hljs-attr">"items"</span>: [<span class="hljs-string">"leather_helmet"</span>],<br>                <span class="hljs-attr">"count"</span>: <span class="hljs-number">1</span>,<br>                <span class="hljs-attr">"nbt"</span>: <span class="hljs-string">"&#123;id:\"nvh:helmet\"&#125;"</span><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>然后刷发光实体，并且糊到玩家脸上。<br>但是这个方案并不完备，由于tp的延迟，如果玩家快速转动视角，实体就会离开玩家视野然后导致着色器失效一瞬间，观感不是很好。<br>解决方法是检测模型材质来实现的，把模型放的足够大就可以基本避免着色器失效。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java">execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> entity <span class="hljs-meta">@s</span>[predicate=nvh:helmet] unless entity <span class="hljs-meta">@e</span>[type=armor_stand,tag=nvh-marker] run summon armor_stand ^ ^ ^<span class="hljs-number">5</span> &#123;NoAI:<span class="hljs-number">1</span>b,Tags:[<span class="hljs-string">"nvh-marker"</span>],Small:<span class="hljs-number">1</span>,Marker:<span class="hljs-number">1</span>,Invisible:<span class="hljs-number">1</span>&#125;<br>execute as <span class="hljs-meta">@a</span>[predicate=nvh:helmet] at <span class="hljs-meta">@s</span> anchored eyes run tp <span class="hljs-meta">@e</span>[type=armor_stand,tag=nvh-marker,limit=<span class="hljs-number">1</span>] ^ ^ ^<span class="hljs-number">5</span><br>execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> unless entity <span class="hljs-meta">@s</span>[predicate=nvh:helmet] <span class="hljs-keyword">if</span> entity <span class="hljs-meta">@e</span>[type=armor_stand,tag=nvh-marker] run tp <span class="hljs-meta">@e</span>[type=armor_stand,tag=nvh-marker] ~ ~-<span class="hljs-number">366</span> ~<br></code></pre></td></tr></table></figure>
 
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"criteria"</span>: &#123;<br>        <span class="hljs-attr">"put_head"</span>: &#123;<br>            <span class="hljs-attr">"trigger"</span>: <span class="hljs-string">"minecraft:placed_block"</span>,<br>            <span class="hljs-attr">"conditions"</span>: &#123;<br>                <span class="hljs-attr">"block"</span>: <span class="hljs-string">"minecraft:player_wall_head"</span><br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">"rewards"</span>: &#123;<br>        <span class="hljs-attr">"function"</span>: <span class="hljs-string">"skull:reset"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>然后调用发光效果的着色器</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs json">#minecraft/shaders/post/entity_outline.json<br><br>&#123;<br>    <span class="hljs-attr">"targets"</span>: [<br>        <span class="hljs-string">"swap"</span>,<br>        <span class="hljs-string">"final"</span><br>    ],<br>    <span class="hljs-attr">"passes"</span>: [<br>        &#123;<br>            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"entity_outline"</span>,<br>            <span class="hljs-attr">"intarget"</span>: <span class="hljs-string">"final"</span>,<br>            <span class="hljs-attr">"outtarget"</span>: <span class="hljs-string">"swap"</span>,<br>			<span class="hljs-attr">"auxtargets"</span>: [<br>				&#123;<br>					<span class="hljs-attr">"name"</span>:<span class="hljs-string">"DiffuseDepthSampler"</span>,<br>					<span class="hljs-attr">"id"</span>: <span class="hljs-string">"minecraft:main:depth"</span><br>				&#125;<br>			]<br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"blit"</span>,<br>            <span class="hljs-attr">"intarget"</span>: <span class="hljs-string">"swap"</span>,<br>            <span class="hljs-attr">"outtarget"</span>: <span class="hljs-string">"final"</span><br>        &#125;<br>    ]<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>然后通过视线追踪在头颅位置生成maker，并对齐方块中央。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">execute if entity @s[distance=..6] if block ~ ~ ~ #player_head positioned ^ ^ ^ run summon armor_stand ~ ~ ~ &#123;Invisible:1b,Invulnerable:1b,Marker:1b,Tags:["skull-name"],Small:1b&#125;<br>execute if entity @s[distance=..6] unless block ~ ~ ~ #player_head positioned ^ ^ ^0.005 run function skull:ray<br></code></pre></td></tr></table></figure>
+<p>可以看到，在<em>entity_outline</em>当中调用了深度缓冲。<br>在program的<em>entity_outline</em>中进行相关设置，同时使用片段着色器<em>night_vision</em>。</p>
+<figure class="highlight glsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs glsl"><span class="hljs-meta">#minecraft/shaders/post/night_vision.fsh</span><br><br><span class="hljs-meta">#version 150</span><br><br><span class="hljs-keyword">uniform</span> <span class="hljs-type">sampler2D</span> DiffuseSampler;<br><span class="hljs-keyword">uniform</span> <span class="hljs-type">sampler2D</span> DiffuseDepthSampler;<br><br><span class="hljs-keyword">in</span> <span class="hljs-type">vec2</span> texCoord;<br><br><span class="hljs-keyword">out</span> <span class="hljs-type">vec4</span> fragColor;<br><br><span class="hljs-type">void</span> main()&#123;<br>    <span class="hljs-type">float</span> fromcenter = <span class="hljs-built_in">distance</span>(texCoord, <span class="hljs-type">vec2</span>(<span class="hljs-number">0.5</span>,<span class="hljs-number">0.5</span>));<br>	<span class="hljs-type">float</span> color = (<span class="hljs-number">1.0</span> - <span class="hljs-built_in">texture</span>(DiffuseDepthSampler, texCoord).r) * <span class="hljs-number">15.0</span>;<br><br>    <span class="hljs-keyword">if</span> (fromcenter &lt; <span class="hljs-number">0.62</span>)&#123;<br>        fragColor = <span class="hljs-type">vec4</span>(<span class="hljs-number">0.0</span>, color + <span class="hljs-number">0.1</span>, color - <span class="hljs-number">0.1</span>, <span class="hljs-number">0.9</span>);<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (fromcenter &gt;= <span class="hljs-number">0.62</span>)&#123;<br>        fragColor = <span class="hljs-type">vec4</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.99</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>然后通过牌子获取到头颅的用户ID，使用<em>interpret</em>拍扁</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java">execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run setblock ~ ~2 ~ minecraft:oak_sign&#123;Text1:"&#123;\"block\":\"~ ~-2 ~\",\"nbt\":\"Owner.Name\",\"interpret\":false&#125;",Text2:"&#123;\"text\":\"\"&#125;",Text3:"&#123;\"text\":\"\"&#125;",Text4:"&#123;\"text\":\"\"&#125;"&#125;<br>execute as @e[type=armor_stand,tag=skull-name,tag=!b] at @s if block ~ ~ ~ #player_head run data modify entity @s CustomName set from block ~ ~2 ~ Text1<br></code></pre></td></tr></table></figure>
-
-<p>最后是羊毛染色的相关处理，偷懒直接改了队伍color。</p>
+<p>获取了屏幕上每个像素点到中心的距离，若小于等于0.62，则输出夜视画面的主体（深度缓冲）。<br>若大于0.62，则输出黑色像素，作为周围的一个边框。<br>根据这个原理，原版的发光效果就没法用了:(，因为一旦玩家视野内出现发光实体，就会触发着色器，所以这个包也就是娱乐向的XD<br>同样通过识别模型材质可以躲过这个问题，不过等我有空再试吧。<br>原版的shader限制还是有很多的，不过在地图创作方面也确实是极大丰富了视觉效果。</p>
 <h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
-<li>黑洞群的bcb大佬和黑猫大佬提供技术支持</li>
-<li>kc提供了他的头（？）</li>
-<li>dhp真好用</li>
+<li>ch2的深度缓冲教程</li>
+<li>其他所有的shader教程</li>
 </ul>
-<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接：<a href="https://pan.baidu.com/s/1EvwPPwuBLD-FEjmrnktelA" target="_blank" rel="noopener">https://pan.baidu.com/s/1EvwPPwuBLD-FEjmrnktelA</a><br>提取码：t9qq</p>
+<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接: <a href="https://pan.baidu.com/s/1X23epcmeNake3GpkTF1C7Q" target="_blank" rel="noopener">https://pan.baidu.com/s/1X23epcmeNake3GpkTF1C7Q</a><br>提取码: f5pp</p>
  
       <!-- reward -->
       
@@ -153,19 +152,10 @@
    
   <nav class="article-nav">
     
-      <a href="/2020/03/28/1-15-2-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E6%90%AC%E7%AE%B1%E5%99%A8/" class="article-nav-link">
-        <strong class="article-nav-caption">上一篇</strong>
-        <div class="article-nav-title">
-          
-            [1.15.2]Minecraft数据包---搬箱器
-          
-        </div>
-      </a>
     
-    
-      <a href="/2020/03/27/Hello-World-Again/" class="article-nav-link">
+      <a href="/2021/07/30/1-17-1-Minecraft%E8%B5%84%E6%BA%90%E5%8C%85-%E7%9D%80%E8%89%B2%E5%99%A8%E5%AE%9E%E4%BE%8B/" class="article-nav-link">
         <strong class="article-nav-caption">下一篇</strong>
-        <div class="article-nav-title">Hello World Again</div>
+        <div class="article-nav-title">[1.17.1]Minecraft资源包-着色器实例</div>
       </a>
     
   </nav>
@@ -519,4 +509,6 @@
 
     
   </div>
-<script async>window.onload=function(){var a=document.createElement('script'),b=document.getElementsByTagName('script')[0];a.type='text/javascript',a.async=!0,a.src='/sw-register.js?v='+Date.now(),b.parentNode.insertBefore(a,b)};</script></body></html>
+</body>
+
+</html>

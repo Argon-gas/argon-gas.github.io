@@ -1,6 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>[1.17.1]Minecraft数据包---夜视仪</title>
+    <url>/2021/08/12/1-17-1-Minecraft%E6%95%B0%E6%8D%AE%E5%8C%85-%E5%A4%9C%E8%A7%86%E4%BB%AA/</url>
+    <content><![CDATA[<p>另一个着色器实例，尝试做了个夜视仪。<br>但是其实完全没有夜视的效果啊，只是把屏幕变绿了而已XD，但是观感还是不错的，这也得亏深度缓冲。</p>
+<a id="more"></a>
+
+<h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：</p>
+<iframe src="//player.bilibili.com/player.html?aid=759859607&bvid=BV1464y1q7NE&cid=387864669&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px"> </iframe>
+
+<p><a href="https://www.bilibili.com/video/BV1464y1q7NE" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1464y1q7NE</a></p>
+<p><img src="https://i.loli.net/2021/08/12/A6yBuIKCpYWi97m.png" alt="演示1"></p>
+<p><img src="https://i.loli.net/2021/08/12/DsG8LIP26uXUYWF.png" alt="演示2"></p>
+<h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>当玩家戴着一个特殊帽子的时候，在玩家面前生成发光实体，然后调用着色器。<br>帽子的判断使用断言。当玩家戴着特定帽子时，断言通过。</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"condition"</span>: <span class="hljs-string">"minecraft:entity_properties"</span>,<br>    <span class="hljs-attr">"entity"</span>: <span class="hljs-string">"this"</span>,<br>    <span class="hljs-attr">"predicate"</span>: &#123;<br>        <span class="hljs-attr">"equipment"</span>: &#123;<br>            <span class="hljs-attr">"head"</span>: &#123;<br>                <span class="hljs-attr">"items"</span>: [<span class="hljs-string">"leather_helmet"</span>],<br>                <span class="hljs-attr">"count"</span>: <span class="hljs-number">1</span>,<br>                <span class="hljs-attr">"nbt"</span>: <span class="hljs-string">"&#123;id:\"nvh:helmet\"&#125;"</span><br>            &#125;<br>        &#125;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<p>然后刷发光实体，并且糊到玩家脸上。<br>但是这个方案并不完备，由于tp的延迟，如果玩家快速转动视角，实体就会离开玩家视野然后导致着色器失效一瞬间，观感不是很好。<br>解决方法是检测模型材质来实现的，把模型放的足够大就可以基本避免着色器失效。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> <span class="hljs-keyword">if</span> entity <span class="hljs-meta">@s</span>[predicate=nvh:helmet] unless entity <span class="hljs-meta">@e</span>[type=armor_stand,tag=nvh-marker] run summon armor_stand ^ ^ ^<span class="hljs-number">5</span> &#123;NoAI:<span class="hljs-number">1</span>b,Tags:[<span class="hljs-string">"nvh-marker"</span>],Small:<span class="hljs-number">1</span>,Marker:<span class="hljs-number">1</span>,Invisible:<span class="hljs-number">1</span>&#125;<br>execute as <span class="hljs-meta">@a</span>[predicate=nvh:helmet] at <span class="hljs-meta">@s</span> anchored eyes run tp <span class="hljs-meta">@e</span>[type=armor_stand,tag=nvh-marker,limit=<span class="hljs-number">1</span>] ^ ^ ^<span class="hljs-number">5</span><br>execute as <span class="hljs-meta">@a</span> at <span class="hljs-meta">@s</span> unless entity <span class="hljs-meta">@s</span>[predicate=nvh:helmet] <span class="hljs-keyword">if</span> entity <span class="hljs-meta">@e</span>[type=armor_stand,tag=nvh-marker] run tp <span class="hljs-meta">@e</span>[type=armor_stand,tag=nvh-marker] ~ ~-<span class="hljs-number">366</span> ~<br></code></pre></td></tr></table></figure>
+
+<p>然后调用发光效果的着色器</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">#minecraft/shaders/post/entity_outline.json<br><br>&#123;<br>    <span class="hljs-attr">"targets"</span>: [<br>        <span class="hljs-string">"swap"</span>,<br>        <span class="hljs-string">"final"</span><br>    ],<br>    <span class="hljs-attr">"passes"</span>: [<br>        &#123;<br>            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"entity_outline"</span>,<br>            <span class="hljs-attr">"intarget"</span>: <span class="hljs-string">"final"</span>,<br>            <span class="hljs-attr">"outtarget"</span>: <span class="hljs-string">"swap"</span>,<br>			<span class="hljs-attr">"auxtargets"</span>: [<br>				&#123;<br>					<span class="hljs-attr">"name"</span>:<span class="hljs-string">"DiffuseDepthSampler"</span>,<br>					<span class="hljs-attr">"id"</span>: <span class="hljs-string">"minecraft:main:depth"</span><br>				&#125;<br>			]<br>        &#125;,<br>        &#123;<br>            <span class="hljs-attr">"name"</span>: <span class="hljs-string">"blit"</span>,<br>            <span class="hljs-attr">"intarget"</span>: <span class="hljs-string">"swap"</span>,<br>            <span class="hljs-attr">"outtarget"</span>: <span class="hljs-string">"final"</span><br>        &#125;<br>    ]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>可以看到，在<em>entity_outline</em>当中调用了深度缓冲。<br>在program的<em>entity_outline</em>中进行相关设置，同时使用片段着色器<em>night_vision</em>。</p>
+<figure class="highlight glsl"><table><tr><td class="code"><pre><code class="hljs glsl"><span class="hljs-meta">#minecraft/shaders/post/night_vision.fsh</span><br><br><span class="hljs-meta">#version 150</span><br><br><span class="hljs-keyword">uniform</span> <span class="hljs-type">sampler2D</span> DiffuseSampler;<br><span class="hljs-keyword">uniform</span> <span class="hljs-type">sampler2D</span> DiffuseDepthSampler;<br><br><span class="hljs-keyword">in</span> <span class="hljs-type">vec2</span> texCoord;<br><br><span class="hljs-keyword">out</span> <span class="hljs-type">vec4</span> fragColor;<br><br><span class="hljs-type">void</span> main()&#123;<br>    <span class="hljs-type">float</span> fromcenter = <span class="hljs-built_in">distance</span>(texCoord, <span class="hljs-type">vec2</span>(<span class="hljs-number">0.5</span>,<span class="hljs-number">0.5</span>));<br>	<span class="hljs-type">float</span> color = (<span class="hljs-number">1.0</span> - <span class="hljs-built_in">texture</span>(DiffuseDepthSampler, texCoord).r) * <span class="hljs-number">15.0</span>;<br><br>    <span class="hljs-keyword">if</span> (fromcenter &lt; <span class="hljs-number">0.62</span>)&#123;<br>        fragColor = <span class="hljs-type">vec4</span>(<span class="hljs-number">0.0</span>, color + <span class="hljs-number">0.1</span>, color - <span class="hljs-number">0.1</span>, <span class="hljs-number">0.9</span>);<br>    &#125;<br>    <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (fromcenter &gt;= <span class="hljs-number">0.62</span>)&#123;<br>        fragColor = <span class="hljs-type">vec4</span>(<span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.0</span>, <span class="hljs-number">0.99</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>获取了屏幕上每个像素点到中心的距离，若小于等于0.62，则输出夜视画面的主体（深度缓冲）。<br>若大于0.62，则输出黑色像素，作为周围的一个边框。<br>根据这个原理，原版的发光效果就没法用了:(，因为一旦玩家视野内出现发光实体，就会触发着色器，所以这个包也就是娱乐向的XD<br>同样通过识别模型材质可以躲过这个问题，不过等我有空再试吧。<br>原版的shader限制还是有很多的，不过在地图创作方面也确实是极大丰富了视觉效果。</p>
+<h2 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢"></a>鸣谢</h2><ul>
+<li>ch2的深度缓冲教程</li>
+<li>其他所有的shader教程</li>
+</ul>
+<h2 id="datapack"><a href="#datapack" class="headerlink" title="datapack"></a>datapack</h2><p>链接: <a href="https://pan.baidu.com/s/1X23epcmeNake3GpkTF1C7Q" target="_blank" rel="noopener">https://pan.baidu.com/s/1X23epcmeNake3GpkTF1C7Q</a><br>提取码: f5pp</p>
+]]></content>
+      <tags>
+        <tag>commands</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>[1.17.1]Minecraft资源包-着色器实例</title>
     <url>/2021/07/30/1-17-1-Minecraft%E8%B5%84%E6%BA%90%E5%8C%85-%E7%9D%80%E8%89%B2%E5%99%A8%E5%AE%9E%E4%BE%8B/</url>
     <content><![CDATA[<p>最近学了一些着色器的使用，扒教程时由于没有编程相关的基础，看GLSL的一些东西确实费劲。<br>现在的水平也只是会改改数据而已，做出自己想要的效果还不能实现。<br>另外虽然这是资源包的部分，但是我写这个毕竟是为了数据包的效果服务，所以tag还是commands。 </p>
