@@ -148,11 +148,11 @@
 <hr>
 <p>2020.5.5 更新<br>头图的加载速度还是不能让我满意，所以去找了一下其他的图床<br>然后发现了一个新开的图床<em>img.rruu.net</em><br>速度还不错，而且支持Picgo，所以又把图片全转过去了，之后有空再处理一下Picgo的对接，就不会再改动了。</p>
 <hr>
-<p>2021.2.25 更新<br>过了快一年了，我总算是把PicGo的处理弄好了。<br><del>咕到现在，其实就是懒啦</del><br>但是我感觉似乎也没有太多的便利，因为图片还要先压缩一遍。可能对图片处理量比较大的blog会有比较明显吧。<br>不过方便一点总归是好的XD<br>传张图测试一下：</p>
-<p><del>这张图压缩的过了XD</del><br><img src="https://img.rruu.net/image/6037cc1ea0f7a" alt="test"></p>
-<p>体验不是很好，给图片重命名的时候卡死了（<br>而且传图的速度很慢，我感觉我打开网页-上传-复制链接的速度和这个其实差不多<br>有的时候会上传失败，总之就是不太好用:(</p>
+<p>2021.2.25 更新<br>过了快一年了，我总算是把PicGo的处理弄好了。<br><del>咕到现在，其实就是懒啦</del><br>但是我感觉似乎也没有太多的便利，因为图片还要先压缩一遍。可能对图片处理量比较大的blog会有比较明显吧。<br>体验不是很好，给图片重命名的时候卡死了（<br>而且传图的速度很慢，我感觉我打开网页-上传-复制链接的速度和这个其实差不多<br>有的时候会上传失败，总之就是不太好用:(</p>
 <hr>
 <p>2021.6.9 更新<br>如优图床好像不能用了，作者的网站也隔上墙了，我怀疑是因为被搞了。<br>所以去注册了经典sm.ms的图床，还是很快的。</p>
+<hr>
+<p>2021.8.26 更新<br>如优图床原生的图片地址已经失效，但是阿里的图片地址还好用。<br>由于如优图床已经爆炸，所以把失效图片全迁移到sm.ms了，幸好之前的图片都有存档。</p>
 ]]></content>
       <tags>
         <tag>strange</tag>
@@ -168,8 +168,8 @@
 <iframe src="//player.bilibili.com/player.html?aid=925266260&bvid=BV1qT4y1G79T&cid=180007446&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px"> </iframe>
 
 <p><a href="https://www.bilibili.com/video/BV1qT4y1G79T" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1qT4y1G79T</a></p>
-<p><img src="https://img.rruu.net/image/5eb0e47745d0f" alt="演示1"></p>
-<p><img src="https://img.rruu.net/image/5eb0e4684c5f4" alt="演示2"></p>
+<p><img src="https://i.loli.net/2021/08/26/L1QByZvOP9j6IUE.png" alt="演示1"></p>
+<p><img src="https://i.loli.net/2021/08/26/Wnqoe3EFfAc5Lzp.png" alt="演示2"></p>
 <p>使用</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><code class="hljs java">/function chestmenu:on<br>/function chestmenu:off<br></code></pre></td></tr></table></figure>
 
@@ -228,12 +228,12 @@
 <a id="more"></a>
 
 <p>弄好之后试了一下，两边速度基本看不出太大差异，不过一些插件还是gitee那边快不少。<br>内部页面的加载速度也是gitee更胜一筹。</p>
-<p><img src="https://img.rruu.net/image/5eb0e47a18472" alt="gitee更胜一筹"></p>
-<p><img src="https://img.rruu.net/image/5eb0e47c6d42f" alt="github加载略慢"></p>
+<p><img src="https://i.loli.net/2021/08/26/WYpLuyCJDEiMK9I.png" alt="gitee更胜一筹"></p>
+<p><img src="https://i.loli.net/2021/08/26/78BvIMilPDN1snL.png" alt="github略慢"></p>
 <p>两边的内容都是一样的（除非我忘了更新gitee），所以可以优先去访问gitee.io，毕竟还是快一点。</p>
 <hr>
 <p>2021.8.26 更新</p>
-<p>心血来潮去freenom白嫖了个免费的一级域名 &lt;argon-gas.ml&gt;（其实是一年免费+免费续期，不嫌麻烦倒还好）<br>然后发现gitee的普通版gitpage不支持自定义域名，必须升级到pro版才能自定义，免费用户只有一个月试用。<br>所以就给了github的page，操作并不复杂，很快就搞好了。但是github的page就无法查看了,提示需要备案:(<br>挂梯子之后才发现可以正常浏览，而且域名也已经解析成功了。<br>感觉有点奇怪，这个域名是国外的小众域名，DNS直接用的Freenom的，服务器托管在github上，不应该要求备案的啊。<br>总之现在githubpage使用自定义域名后国内似乎上不去了，但挂梯子可正常浏览；giteepage没变化，国内还是看这个8 XD</p>
+<p>心血来潮去freenom白嫖了个免费的一级域名 <a href="argon-gas.ml"></a>（其实是一年免费+免费续期，不嫌麻烦倒还好）<br>然后发现gitee的普通版gitpage不支持自定义域名，必须升级到pro版才能自定义，免费用户只有一个月试用。<br>所以就给了github的page，操作并不复杂，很快就搞好了。但是github的page就无法查看了,提示需要备案:(<br>挂梯子之后才发现可以正常浏览，而且域名也已经解析成功了。<br>感觉有点奇怪，这个域名是国外的小众域名，DNS直接用的Freenom的，服务器托管在github上，不应该要求备案的啊。<br>总之现在githubpage使用自定义域名后国内似乎上不去了，但挂梯子可正常浏览；giteepage没变化，国内还是看这个8 XD</p>
 ]]></content>
       <tags>
         <tag>strange</tag>
@@ -249,14 +249,14 @@
 <p>后来又想搭个小场景，画了十分钟建了一个，怎么看怎么丑，作罢。</p>
 <p>又想用c4d，mi之类的渲染一张，但是水平有限，作罢。</p>
 <p>所以最后还是选了第一种方案，只不过把各种奇怪生物全删掉了，留了一只creeper，最后出来的效果其实还不错，调色感觉也比较符合整体效果。</p>
-<p><img src="https://img.rruu.net/image/5eb1048c70e64" alt="cover"></p>
+<p><img src="https://i.loli.net/2021/08/26/XFI6BaLxb3tZcV8.png" alt="cover"></p>
 <p>以后会多做几张类似风格的，再做个自动轮换岂不美哉。</p>
 <hr>
 <p>2020.4.10 更新</p>
-<p><img src="https://img.rruu.net/image/5eb1048d68df1" alt="cover"></p>
+<p><img src="https://i.loli.net/2021/08/26/sA48fInyRal6F9j.png" alt="cover"></p>
 <hr>
 <p>2020.4.30 更新</p>
-<p><img src="https://ae01.alicdn.com/kf/He2d4c302323249d787636e16a5caa662M.jpg" alt="cover"></p>
+<p><img src="https://i.loli.net/2021/08/26/e1Lr9CGDHipUEMN.png" alt="cover"></p>
 <p>配色纠结了好久，不过成品我觉得还蛮好看的</p>
 <hr>
 <p>2020.6.25 更新<br><img src="https://ae01.alicdn.com/kf/H56dd2502d2944a5e83f4015e54d4a201r.jpg" alt="cover"></p>
@@ -285,7 +285,7 @@
 <iframe src="//player.bilibili.com/player.html?aid=97530658&bvid=BV1xE411P7UL&cid=166502887&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px"> </iframe>
 
 <p><a href="https://www.bilibili.com/video/BV1xE411P7UL" target="_blank" rel="noopener">https://www.bilibili.com/video/BV1xE411P7UL</a></p>
-<p><img src="https://img.rruu.net/image/5eb0e46b2c89a" alt="演示1"></p>
+<p><img src="https://i.loli.net/2021/08/26/mn6DxQcTPyRuk7d.png" alt="演示1"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>判断玩家手持特殊胡萝卜杆，然后右键时视线追踪</p>
 <figure class="highlight"><table><tr><td class="code"><pre><code class="hljs java">execute if entity @s[distance=..7] if block ~ ~ ~ #carry:chest run summon minecraft:armor_stand ~ ~ ~ &#123;Tags:["carry-maker"],Invisible:1b,Marker:1b,NoGravity:1b&#125;<br>execute if entity @s[distance=..7] unless block ~ ~ ~ #carry:chest positioned ^ ^ ^0.005 run function carry:ray1<br></code></pre></td></tr></table></figure>
 
@@ -314,9 +314,9 @@
 <h2 id="效果演示"><a href="#效果演示" class="headerlink" title="效果演示"></a>效果演示</h2><p>B站视频演示：</p>
 <iframe src="//player.bilibili.com/player.html?aid=94257392&bvid=BV1xE411p7FW&cid=160918321&page=1" scrolling="no" border="0" frameborder="no" framespacing="0" allowfullscreen="true" style="width:100%;height:500px;min-width:375px;min-height:200px;"></iframe>
 
-<p><img src="https://img.rruu.net/image/5eb0e47894feb" alt="演示1"></p>
-<p><img src="https://img.rruu.net/image/5eb0e47b2b623" alt="演示2"></p>
-<p><img src="https://img.rruu.net/image/5eb0e46f1cba1" alt="演示3"></p>
+<p><img src="https://i.loli.net/2021/08/26/koeH3l7In9wJtFW.png" alt="演示1"></p>
+<p><img src="https://i.loli.net/2021/08/26/xo6XMlFRukmjGIe.png" alt="演示2"></p>
+<p><img src="https://i.loli.net/2021/08/26/vW3FB52QAgKSDYl.png" alt="演示3"></p>
 <h2 id="大致原理"><a href="#大致原理" class="headerlink" title="大致原理"></a>大致原理</h2><p>首先是通过进度判断玩家放下头颅，要注意的是头颅放在地上和墙上的id不同，当时我就被这个坑了好久（</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><code class="hljs json">&#123;<br>    <span class="hljs-attr">"criteria"</span>: &#123;<br>        <span class="hljs-attr">"put_head"</span>: &#123;<br>            <span class="hljs-attr">"trigger"</span>: <span class="hljs-string">"minecraft:placed_block"</span>,<br>            <span class="hljs-attr">"conditions"</span>: &#123;<br>                <span class="hljs-attr">"block"</span>: <span class="hljs-string">"minecraft:player_head"</span><br>            &#125;<br>        &#125;<br>    &#125;,<br>    <span class="hljs-attr">"rewards"</span>: &#123;<br>        <span class="hljs-attr">"function"</span>: <span class="hljs-string">"skull:reset"</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
